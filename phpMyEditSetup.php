@@ -62,8 +62,8 @@ if (! defined('PHP_EOL')) {
 $hn = @$_POST['hn'];
 $un = @$_POST['un'];
 $pw = @$_POST['pw'];
-if(strlen($_POST['db'])>0) $db = @$_POST['db'];
-if(strlen($_POST['tb'])>0) $tb = @$_POST['tb'];
+if (isset($_POST['db'])) $db = @$_POST['db'];
+if (isset($_POST['tb'])) $tb = @$_POST['tb'];
 $id = @$_POST['id'];
 $submit        = @$_POST['submit'];
 $options       = @$_POST['options'];
@@ -90,9 +90,10 @@ if (isset($baseFilename) && $baseFilename != '') {
 
 $buffer = '';
 
-function echo_html($x)
+function echo_html($myString)
 {
-	echo htmlspecialchars($x),PHP_EOL;
+ // in PHP 5.4 the default encoding used by htmlspecialchars() was changed.
+  echo htmlspecialchars($myString, ENT_COMPAT, 'ISO-8859-1',true);
 }
 
 function echo_buffer($x)
@@ -112,11 +113,13 @@ function echo_buffer($x)
 #:#  Contributed by Wade Ryan,        #:#
 #:#                 20060906          #:#
 #:#####################################:#
-function check_constraints($tb,$fd)
+function check_constraints($dbl, $tb,$fd)
 {
   $query    = "show create table $tb";
-  $result   = mysql_query($query);
-  $tableDef = preg_split('/\n/',mysql_result($result,0,1));
+  $result   = $dbl->query($query);
+  $ct = $result->fetch();
+  $tableDef = preg_split('/\n/',$ct[1]);
+  //print_r($tableDef);
 
   $constraint_arg="";
   while (list($key,$val) = each($tableDef)) {
@@ -131,6 +134,7 @@ function check_constraints($tb,$fd)
 
     }
   }
+  //print_r("constraint_arg $constraint_arg");
   return $constraint_arg;
 }
 
@@ -159,12 +163,81 @@ function get_versions()
 	}
 	return $ret_ar;
 }
+/**
+ * From https://www.sitepoint.com/community/u/Czaries helpful comment on how to do this
+	* 	 *	Parse PDO-produced column type
+	* 	 	 *	[internal function]
+	* 	 	 	 */
+function parseColumnType($colType)
+{
+	$colInfo = array();
+	$colParts = explode(" ", $colType);
+	if($fparen = strpos($colParts[0], "("))
+	{
+		$colInfo['type'] = substr($colParts[0], 0, $fparen);
+		$colInfo['pdoType'] = '';
+		$colInfo['length']  = str_replace(")", "", substr($colParts[0], $fparen+1));
+		$colInfo['attributes'] = isset($colParts[1]) ? $colParts[1] : NULL;
+	}
+	else
+	{
+		$colInfo['type'] = $colParts[0];
+	}
 
+	// PDO Bind types
+	$pdoBindTypes = array(
+		'char' => PDO::PARAM_STR,
+		'int' => PDO::PARAM_INT,
+		'bool' => PDO::PARAM_BOOL,
+		'date' => PDO::PARAM_STR,
+		'time' => PDO::PARAM_INT,
+		'text' => PDO::PARAM_STR,
+		'blob' => PDO::PARAM_LOB,
+		'binary' => PDO::PARAM_LOB
+	);
 
+	$pdoType = '';
+	foreach($pdoBindTypes as $pKey => $pType)
+	{
+		if(strpos(' '.strtolower($colInfo['type']).' ', $pKey)) {
+			$colInfo['pdoType'] = $pType;
+			break;
+		} else {
+			$colInfo['pdoType'] = PDO::PARAM_STR;
+		}
+	}
+
+	return $colInfo;
+}
+								//
 $self = basename($_SERVER['PHP_SELF']);
-$dbl  = @mysql_pconnect($hn, $un, $pw);
+function sql_connect($hn,$db,$un,$pw)
+{
+		try {
+			$dsn = "mysql:host=" . $hn;
+			if (isset($db)&& strlen($db)>1)
+				$dsn .= ";dbname=" . $db;
+			$dbh = @ini_get('allow_persistent')
+				? new PDO($dsn, $un, $pw, array( PDO::ATTR_PERSISTENT => true )) // @mysql_pconnect($this->hn, $this->un, $this->pw)
+				: new PDO($dsn, $un, $pw); // @mysql_connect($this->hn, $this->un, $this->pw);
 
-if ((!$dbl) or empty($submit)) {
+			// select error-mode: [ERRMODE_SILENT | ERRMODE_WARNING | ERRMODE_EXCEPTION]
+			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+			// select fetch-mode: [FETCH_ASSOC | FETCH_CLASS | FETCH_OBJ]
+			// $this->dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+		} // try/catch
+		catch(PDOException $e) {
+			die("sql_connect PDO($dsn,$un,$pw) ". $e->getMessage());
+			$dbh = null;
+		} // try/catch
+		return $dbh;
+}
+if (isset($hn) && isset($un) && isset($pw))
+	$dbl  = sql_connect($hn,$db, $un, $pw);
+if (strlen($db)<1)
+		unset($db);
+if ((!isset($dbl)) or empty($submit)) {
 	echo '<h1>Please log in to your MySQL database</h1>';
 	if (!empty($submit)) {
 		echo '<h2>Sorry - login failed - please try again</h2>'.PHP_EOL;
@@ -172,6 +245,10 @@ if ((!$dbl) or empty($submit)) {
 	if (! isset($hn)) {
 		$hn = 'localhost';
 	}
+	if (! isset($un)) 
+		$un = 'username';
+	if (! isset($pw))
+		$pw = 'password';
 	echo '
 		<form action="'.htmlspecialchars($self).'" method="POST">
 		<table border="1" cellpadding="1" cellspacing="0" summary="Login form">
@@ -183,7 +260,7 @@ if ((!$dbl) or empty($submit)) {
 		<td><input type="text" name="un" value="'.htmlspecialchars($un).'"></td>
 		</tr><tr>
 		<td>Password:</td>
-		<td><input type="password" name="pw" value="'.htmlspecialchars($pw).'"></td>
+		<td><input type="text" name="pw" value="'.htmlspecialchars($pw).'"></td>
 		</tr><tr>
 		<td>Database:</td>
         <td><input type="text" name="db" value="'.htmlspecialchars($db).'"></td>
@@ -195,16 +272,16 @@ if ((!$dbl) or empty($submit)) {
 		<input type="submit" name="submit" value="Submit">
 		</form>'.PHP_EOL;
 } else if (! isset($db)) {
-	$dbs     = @mysql_list_dbs($dbl);
-	$num_dbs = @mysql_num_rows($dbs);
+
 	echo '<h1>Please select a database</h1>
 		<form action="'.htmlspecialchars($self).'" method="POST">
 		<input type="hidden" name="hn" value="'.htmlspecialchars($hn).'">
 		<input type="hidden" name="un" value="'.htmlspecialchars($un).'">
 		<input type="hidden" name="pw" value="'.htmlspecialchars($pw).'">
 		<table border="1" cellpadding="1" cellspacing="1" summary="Database selection">'.PHP_EOL;
-	for ($i = 0; $i < $num_dbs; $i++) {
-		$db = @mysql_db_name($dbs, $i);
+	$dbs = $dbl->query( 'SHOW DATABASES' );
+
+	while( ( $db = $dbs->fetchColumn( 0 ) ) !== false ){
 		$checked = ! strcasecmp($un, $db) ? ' checked' : '';
 		$db = htmlspecialchars($db);
 		echo '<tr><td><input'.$checked.' type="radio" name="db" value="'.$db.'"></td><td>'.$db.'</td></tr>'.PHP_EOL;
@@ -221,13 +298,12 @@ if ((!$dbl) or empty($submit)) {
 		<input type="hidden" name="pw" value="'.htmlspecialchars($pw).'">
 		<input type="hidden" name="db" value="'.htmlspecialchars($db).'">
 		<table border="1" cellpadding="1" cellspacing="1" summary="Table selection">'.PHP_EOL;
-	$tbs     = @mysql_list_tables($db, $dbl);
-	$num_tbs = @mysql_num_rows($tbs);
-	for ($j = 0; $j < $num_tbs; $j++) {
-		$tb = @mysql_tablename($tbs, $j);
+	$tbs = $dbl->query('SHOW TABLES');
+	$checked = ' checked';
+	while( ($tb = $tbs->fetchColumn(0))!==false)	{
 		$tb = htmlspecialchars($tb);
-		$checked = $j == 0 ? ' checked' : '';
 		echo '<tr><td><input'.$checked.' type="radio" name="tb" value="'.$tb.'"></td><td>'.$tb.'</td></tr>'.PHP_EOL;
+		$checked = '';
 	}
 	echo '</table><br>
 		<input type="submit" name="submit" value="Submit">
@@ -253,18 +329,13 @@ if ((!$dbl) or empty($submit)) {
 		<input type="hidden" name="tb" value="'.htmlspecialchars($tb).'">
 		<table border="1" cellpadding="1" cellspacing="1" summary="Key selection">'.PHP_EOL;
 //		<tr><td><input type="radio" name="id" value="">
-//		<td><i>None</i></td><td><i>No id field required</i></td></tr>
-	@mysql_select_db($db);
-	$tb_desc = @mysql_query("DESCRIBE $tb");
-	$fds     = @mysql_list_fields($db,$tb,$dbl);
-	for ($j = 0; ($fd = @mysql_field_name($fds, $j)) != false; $j++) {
-		$ff = @mysql_field_flags($fds, $j);
-		strlen($ff) <= 0 && $ff = '---';
-		$checked = stristr($ff, 'primary_key') ? ' checked' : '';
-		echo '<tr><td><input',$checked,' type="radio" name="id" value="',htmlspecialchars($fd),'"></td>';
-		echo '<td>',htmlspecialchars($fd),'</td>';
-		echo '<td>',htmlspecialchars($ff),'</td>';
-		$r = @mysql_fetch_array($tb_desc, $j);
+	//		<td><i>None</i></td><td><i>No id field required</i></td></tr>
+	$tb_desc = $dbl->query("DESCRIBE $tb");
+	while( ($ff = $tb_desc->fetch())!==false)	{
+		$checked = $ff["Key"]=="PRI" ? ' checked' : '';
+		echo '<tr><td><input',$checked,' type="radio" name="id" value="',htmlspecialchars($ff[0]),'"></td>';
+		echo '<td>',htmlspecialchars($ff[0]),'</td>';
+		echo '<td>',htmlspecialchars($ff["Type"]),'</td>';
 	}
 	echo '</table><br>
 		<input type="submit" name="submit" value="Submit">
@@ -337,8 +408,8 @@ if ((!$dbl) or empty($submit)) {
 	if ($id == '') {
 		echo_buffer("\$opts['key_type'] = '';");
 	} else {
-		$fds = @mysql_list_fields($db,$tb,$dbl);
-		for ($j = 0; ($fd = @mysql_field_name($fds, $j)) != ''; $j++) {
+		$tb_desc = $dbl->query("DESCRIBE $tb");
+		while( ($fd = $tb_desc->fetch())!==false)	{
 			if ($fd == $id) {
 				echo_buffer("\$opts['key_type'] = '".@mysql_field_type($fds, $j)."';");
 				break;
@@ -433,19 +504,16 @@ appear in generated list. Here are some most used field options documented.
   descriptions fields are also possible. Check documentation for this.
 */
 ");
-
-	@mysql_select_db($db);
-	$tb_desc = @mysql_query("DESCRIBE $tb");
-	$fds     = @mysql_list_fields($db, $tb, $dbl);
-	$num_fds = @mysql_num_fields($fds);
-	$ts_cnt  = 0;
-	for ($k = 0; $k < $num_fds; $k++) {
-		$fd = mysql_field_name($fds,$k);
-		$fm = mysql_fetch_field($fds,$k);
+	$dbl->exec("use $db");
+	$tb_desc = $dbl->query("DESCRIBE $tb");
+	while(($fds = $tb_desc->fetch()) !== false) {
+		$ts_cnt  = 0;
+		$fd = $fds[0]; // name
+		//$fm = mysql_fetch_field($fds,$k);
 		$fn = strtr($fd, '_-.', '   ');
 		$fn = preg_replace('/(^| +)id( +|$)/', '\\1ID\\2', $fn); // uppercase IDs
 		$fn = ucfirst($fn);
-		$row = @mysql_fetch_array($tb_desc);
+		$row = $fds;
 		echo_buffer('$opts[\'fdd\'][\''.$fd.'\'] = array('); // )
 		echo_buffer("  'name'     => '".str_replace('\'','\\\'',$fn)."',");
 		$auto_increment = strstr($row[5], 'auto_increment') ? 1 : 0;
@@ -454,11 +522,15 @@ appear in generated list. Here are some most used field options documented.
 		} else {
 			echo_buffer("  'select'   => 'T',");
 		}
+//		print_r("<br>$fd<br>$fn<br>");
+//		print_r("row<br>");
+//		print_r($row[1]);
+//		print_r("endrow<br>");
 		if ($auto_increment) {
 			echo_buffer("  'options'  => 'AVCPDR', // auto increment");
 		}
 		// timestamps are read-only
-		else if (@mysql_field_type($fds, $k) == 'timestamp') {
+		else if ($row[1] == 'timestamp') {
 			if ($ts_cnt > 0) {
 				echo_buffer("  'options'  => 'AVCPD',");
 			} else { // first timestamp
@@ -466,9 +538,18 @@ appear in generated list. Here are some most used field options documented.
 			}
 			$ts_cnt++;
 		}
-		echo_buffer("  'maxlen'   => ".@mysql_field_len($fds,$k).',');
+		$ml = 0;
+		{
+			$pml = parseColumnType($row[1]);
+			foreach($pml as $i => $j)	{
+				if ($i=='length')
+					$ml = $j;
+			}
+		echo_buffer("  'maxlen'   => ".$ml);
+		}
+		//@mysql_field_len($fds,$k).',');
 		// blobs -> textarea
-		if (@mysql_field_type($fds,$k) == 'blob') {
+		if ($row[1] == 'blob') {
 			echo_buffer("  'textarea' => array(");
 			echo_buffer("    'rows' => 5,");
 			echo_buffer("    'cols' => 50),");
@@ -491,7 +572,7 @@ appear in generated list. Here are some most used field options documented.
 			echo_buffer("  'default'  => '0',");
 		}
 		// check for table constraints
-		$outstr = check_constraints($tb, $fd);
+		$outstr = check_constraints($dbl, $tb, $fd);
 		if ($outstr != '') {
 			echo_buffer($outstr);
 		}
@@ -550,7 +631,7 @@ END;
 	$filehandle = @fopen('./'.$contentFile, 'w+');
 	if ($filehandle) {
 		fwrite($filehandle, $buffer);
-		flush($filehandle);
+		flush();
 		fclose($filehandle);
 		echo 'phpMyEdit content file written successfully<br>';
 	} else {
