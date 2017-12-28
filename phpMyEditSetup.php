@@ -290,7 +290,7 @@ if ((!isset($dbl)) or empty($submit)) {
 		<input type="submit" name="submit" value="Submit">
 		<input type="submit" name="cancel" value="Cancel">
 		</form>'.PHP_EOL;
-} else if (!isset($tb)) {
+} else if (!isset($tb) || strlen($tb)<1) {
 	echo '<h1>Please select a table from database: '.htmlspecialchars($db).'</h1>
 		<form action="'.htmlspecialchars($self).'" method="POST">
 		<input type="hidden" name="hn" value="'.htmlspecialchars($hn).'">
@@ -545,7 +545,7 @@ appear in generated list. Here are some most used field options documented.
 				if ($i=='length')
 					$ml = $j;
 			}
-		echo_buffer("  'maxlen'   => ".$ml);
+		echo_buffer("  'maxlen'   => ".$ml.",");
 		}
 		//@mysql_field_len($fds,$k).',');
 		// blobs -> textarea
