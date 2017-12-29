@@ -1,0 +1,370 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>SQL expressions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Fields options"
+HREF="configuration.fields.html"><LINK
+REL="PREVIOUS"
+TITLE="URL linking"
+HREF="configuration.url-linking.html"><LINK
+REL="NEXT"
+TITLE="PHP expressions"
+HREF="configuration.fields.php.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.url-linking.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Fields options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.fields.php.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.FIELDS.SQL"
+>4.8. SQL expressions</A
+></H1
+><P
+>&#13;There is a possibility to define a SQL expression that should be applied to
+particular field when reading or writting data from database. This is very
+useful when you want to interpret the field's content in different way than it
+is stored in database. To be more clear, see following examples.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1154"
+></A
+><P
+><B
+>Example 4-34. Read SQL expressions</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['surname']['sql'] = 'CONCAT(surname, ', ', firstname)';
+$opts['fdd']['title']['sql'] = 'IF(TRIM(title) != "", title, title2)';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;The first example appends content of the <CODE
+CLASS="VARNAME"
+>firstname</CODE
+> field to the
+<CODE
+CLASS="VARNAME"
+>surname</CODE
+> field. Because this is done on the database level, sorting
+and searching (in table filtering page) on this field will properly work.
+Similarly in the second example, the <CODE
+CLASS="VARNAME"
+>title2</CODE
+> field will be used if
+the <CODE
+CLASS="VARNAME"
+>title</CODE
+> field is empty. In this manner you can define a special
+static string, which should be printed in case a field is empty. Just
+substitute a quoted string in place of <CODE
+CLASS="VARNAME"
+>title2</CODE
+>.&#13;</P
+><P
+>&#13;Similarly, you can use SQL expression for storing data into database.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1164"
+></A
+><P
+><B
+>Example 4-35. Write SQL expressions</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['surname']['sqlw'] = 'UPPER($val_qas)';
+$opts['fdd']['title']['sqlw'] = 'TRIM("$val_as")';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;The first example above makes <CODE
+CLASS="VARNAME"
+>surname</CODE
+> uppercase when storing field
+into database. The second one trims all whitespace characters around
+<CODE
+CLASS="VARNAME"
+>title</CODE
+> before writing it to database.&#13;</P
+><P
+>&#13;As a placeholder for the field's content, there are three variables available.
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$val</CODE
+></TD
+><TD
+> -- value of the field</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$val_as</CODE
+></TD
+><TD
+> -- value with <CODE
+CLASS="FUNCTION"
+>addslashes()</CODE
+> function applied</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$val_qas</CODE
+></TD
+><TD
+> -- same as <CODE
+CLASS="VARNAME"
+>$val_as</CODE
+> with quotes around</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;If the <CODE
+CLASS="VARNAME"
+>$val</CODE
+> is <CODE
+CLASS="CONSTANT"
+>some"nice"thing</CODE
+>, then
+<CODE
+CLASS="VARNAME"
+>$val_as</CODE
+> becomes <CODE
+CLASS="CONSTANT"
+>some\"nice\"thing</CODE
+> and
+<CODE
+CLASS="VARNAME"
+>$val_qas</CODE
+> becomes <CODE
+CLASS="CONSTANT"
+>"some\"nice\"thing"</CODE
+>.
+You have to use these variables correctly in your <CODE
+CLASS="VARNAME"
+>['sqlw']</CODE
+>
+expressions, otherwise a MySQL parsing error could occur. We recommend you use
+the <CODE
+CLASS="VARNAME"
+>$val_qas</CODE
+> variable whenever possible, as it is the
+safest one from the mentioned alternatives.&#13;</P
+><P
+>&#13;A very useful and favourite usage of the <CODE
+CLASS="VARNAME"
+>['sqlw']</CODE
+> option is
+to explicitly tell phpMyEdit to store a <CODE
+CLASS="CONSTANT"
+>NULL</CODE
+> value instead
+of an empty string for the particular column. Empty string and
+<CODE
+CLASS="CONSTANT"
+>NULL</CODE
+> are two different values. Many people really do not
+like empty strings in their tables, thus now they have possibility to change
+them to <CODE
+CLASS="CONSTANT"
+>NULL</CODE
+> when user simply enters nothing into form
+input field.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1197"
+></A
+><P
+><B
+>Example 4-36. Storing <CODE
+CLASS="CONSTANT"
+>NULL</CODE
+> instead of empty string</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['sqlw'] = 'IF($val_qas = "", NULL, $val_qas)';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Another example of the <CODE
+CLASS="VARNAME"
+>['sqlw']</CODE
+> usage is the storage of
+user passwords. It is good idea to process user password using some well-known
+hash function before saving it in the database. Following statement is used in
+order to avoid re-hashing an already hashed string. This means, if
+<CODE
+CLASS="VARNAME"
+>col_name</CODE
+> value was not changed, then do not apply
+<CODE
+CLASS="FUNCTION"
+>MD5()</CODE
+> on it. If <CODE
+CLASS="VARNAME"
+>col_name</CODE
+> value was
+changed, then apply <CODE
+CLASS="FUNCTION"
+>MD5()</CODE
+> function.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1207"
+></A
+><P
+><B
+>Example 4-37. Storing password's MD5 hash</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['sqlw'] = 'IF(col_name = $val_qas, $val_qas, MD5($val_qas))';</PRE
+></DIV
+>&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.url-linking.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.fields.php.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>URL linking</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>PHP expressions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

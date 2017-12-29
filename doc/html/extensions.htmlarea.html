@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>phpMyEdit-htmlarea</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensions"
+HREF="extensions.html"><LINK
+REL="PREVIOUS"
+TITLE="phpMyEdit-report"
+HREF="extensions.report.html"><LINK
+REL="NEXT"
+TITLE="phpMyEdit-calpopup"
+HREF="extensions.calpopup.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="extensions.report.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Extensions</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="extensions.calpopup.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="EXTENSIONS.HTMLAREA"
+>5.4. phpMyEdit-htmlarea</A
+></H1
+><P
+>&#13;<DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="../images/warning.gif"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>This extension is obsolete. Use integrated <A
+HREF="extensions.mce-cal.html"
+><I
+>phpMyEdit-mce-cal</I
+></A
+> extension instead.</P
+></TD
+></TR
+></TABLE
+></DIV
+>&#13;</P
+><P
+>&#13;phpMyEdit-htmlarea extension provides support for htmlArea. htmlArea is a free
+WYSIWYG editor replacement for &lt;textarea&gt; fields.  For full source code
+and documentation, visit <A
+HREF="http://www.interactivetools.com/"
+TARGET="_top"
+>http://www.interactivetools.com/</A
+>
+website.&#13;</P
+><P
+>&#13;htmlArea requires Microsoft Internet Explorer 5.5 or better on Windows to run.
+This is because it makes use of some advanced features of IE5.5 that aren't
+available in other browsers yet. It is backwards compatible with other
+browsers, though. They will get a regular textarea field instead of a WYSIWYG
+editor.&#13;</P
+><P
+>&#13;The extension requires a properly installed htmlArea script as it is described
+on the metioned website. This extension enables WYSIWYG editing of a textarea
+field. In order to use it, you should:
+
+<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;Load htmlArea script in the &lt;head&gt;...&lt;/head&gt; section of
+your phpMyEdit calling program as described in the htmlArea manual.&#13;</P
+></LI
+><LI
+><P
+>&#13;Call to <TT
+CLASS="FILENAME"
+>phpMyEdit-htmlarea.class.php</TT
+> instead of
+<TT
+CLASS="FILENAME"
+>phpMyEdit.class.php</TT
+>.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1342"
+></A
+><P
+><B
+>Example 5-1. htmlArea extension enabling</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>require_once 'extensions/phpMyEdit-htmlarea.class.php';
+new phpMyEdit_htmlarea($opts);</PRE
+></DIV
+>&#13;</P
+></LI
+><LI
+><P
+>&#13;Add <CODE
+CLASS="VARNAME"
+>'html'=&gt;true</CODE
+> parameter to the textarea field
+definition in your phpMyEdit calling program.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1348"
+></A
+><P
+><B
+>Example 5-2. htmlArea field enabling</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name'] = array(
+ 'name'     =&#62; 'Column',
+ 'select'   =&#62; 'T',
+ 'options'  =&#62; 'ACPVD',
+ 'required' =&#62; true,
+ 'textarea' =&#62; array(
+   'html' =&#62; true,
+   'rows' =&#62; 11,
+   'cols' =&#62; 81)
+);</PRE
+></DIV
+>&#13;</P
+></LI
+></OL
+>&#13;</P
+><P
+>&#13;This extension is contribution of Ezudin Kurtowich
+<CODE
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:ekurtovic@ieee.org"
+>ekurtovic@ieee.org</A
+>&#62;</CODE
+> from Sarajevo.&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="extensions.report.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="extensions.calpopup.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>phpMyEdit-report</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="extensions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>phpMyEdit-calpopup</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

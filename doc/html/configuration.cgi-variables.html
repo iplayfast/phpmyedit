@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>CGI variables</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="General options"
+HREF="configuration.general.html"><LINK
+REL="PREVIOUS"
+TITLE="Languages"
+HREF="configuration.languages.html"><LINK
+REL="NEXT"
+TITLE="Javascript and DHTML"
+HREF="configuration.js-and-dhtml.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.languages.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. General options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.js-and-dhtml.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.CGI-VARIABLES"
+>3.11. CGI variables</A
+></H1
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.CGI-VARIABLES-USING"
+></A
+>Using CGI variables</H1
+><P
+>&#13;You can optionally append or overwrite individual variables returned from the
+CGI environment (GET/POST HTTP protocol data). Use these two arrays for this
+purpose, where array key means CGI variable name, and array value means CGI
+variable value.&#13;</P
+><P
+>&#13;This will activate the search filter on script initialization. However, it is
+still possible to turn it off by explicit click on <SPAN
+CLASS="GUIBUTTON"
+>Hide</SPAN
+> or
+<SPAN
+CLASS="GUIBUTTON"
+>Clear</SPAN
+> button.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN683"
+></A
+><P
+><B
+>Example 3-29. CGI variables appending</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['cgi']['append']['PME_sys_fl'] = 1;</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;The next example shows how to cause descending sorting according first field in all
+cases. Because <CODE
+CLASS="VARNAME"
+>['overwrite']</CODE
+> is used, sorting column cannot
+be altered by the user by clicking on column heading. 
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN688"
+></A
+><P
+><B
+>Example 3-30. CGI variables overwriting</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['cgi']['overwrite']['PME_sys_sfn'] = '-0';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Using the <CODE
+CLASS="VARNAME"
+>$opts['cgi']['persist']</CODE
+> option you can tell phpMyEdit names and
+values of CGI variables which should be persistent during various pages
+reloading and serving. They will be included into all links and also into all
+forms as appropriate hidden inputs. This feature is provided especially for
+advanced and experienced users using phpMyEdit in their medium-size and large-size
+projects. If you do not understand what does this thing do, feel free to skip
+it. You will surely do not need it.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN693"
+></A
+><P
+><B
+>Example 3-31. Persistent CGI variables</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['cgi']['persist'] = array(
+		'article_id' =&#62; $article_id,
+		'session_id' =&#62; $SESSION_ID
+		);</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.CGI-VARIABLES-PREFIXING"
+></A
+>Prefixing CGI variables</H1
+><P
+>&#13;The type of performed operation such as Add, Change, Delete and so on, is
+passed using a CGI variable named <CODE
+CLASS="VARNAME"
+>operation</CODE
+>. When passed through a
+link, for example when <CODE
+CLASS="VARNAME"
+>$opts['navigation']</CODE
+> is set
+to&nbsp;<CODE
+CLASS="CONSTANT"
+>'G'</CODE
+>&nbsp;or&nbsp;<CODE
+CLASS="CONSTANT"
+>'T'</CODE
+>, the
+value is an untranslated label prefixed with <CODE
+CLASS="CONSTANT"
+>PME_op_</CODE
+>.
+This prefix can be changed by setting the
+<CODE
+CLASS="VARNAME"
+>$opts['cgi']['prefix']['operation']</CODE
+> variable in the calling
+script.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN704"
+></A
+><P
+><B
+>Example 3-32. Custom prefix for operation links</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['cgi']['prefix']['operation'] = 'op-prefix-';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;If you already use in your project some CGI variables used internally by phpMyEdit,
+like '<CODE
+CLASS="VARNAME"
+>operation</CODE
+>, you may want to prefix phpMyEdit's variables to avoid
+collision. For the same reason, you may want to prefix the names of input
+fields.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN709"
+></A
+><P
+><B
+>Example 3-33. Custom name prefix for CGI variables</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['cgi']['prefix']['sys'] = 'sys_prefix_';
+$opts['cgi']['prefix']['data'] = 'data_prefix_';</PRE
+></DIV
+>&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.languages.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.js-and-dhtml.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Languages</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.general.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Javascript and DHTML</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

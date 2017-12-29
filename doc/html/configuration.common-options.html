@@ -1,0 +1,407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Common options</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="General options"
+HREF="configuration.general.html"><LINK
+REL="PREVIOUS"
+TITLE="Unique key"
+HREF="configuration.unique-key.html"><LINK
+REL="NEXT"
+TITLE="Permission options"
+HREF="configuration.permission-options.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.unique-key.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. General options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.permission-options.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.COMMON-OPTIONS"
+>3.3. Common options</A
+></H1
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.PAGE-NAME"
+></A
+>Page name</H1
+><P
+>&#13;The page name option defines the variable used for constructing page and form
+links. If not defined, the default value <CODE
+CLASS="VARNAME"
+>$PHP_SELF</CODE
+> will be
+used.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN173"
+></A
+><P
+><B
+>Example 3-5. Setting up the page name</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['page_name'] = 'index.php';</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.DISPLAYED-RECORDS"
+></A
+>Displayed records</H1
+><P
+>&#13;This option controls the number of records displayed on the screen. Change the
+argument for <CODE
+CLASS="VARNAME"
+>$opts['inc']</CODE
+> in order to specify the maximum
+number of rows to display at one time. The default is 15 rows. To display all
+found records, specify a value of -1 (negative 1).
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN179"
+></A
+><P
+><B
+>Example 3-6. Displayed records</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['inc'] = 20; // list 20 records per page
+
+$opts['inc'] = -1; // list all found records</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.MULTIPLE-SELECTIONS"
+></A
+>Multiple selections</H1
+><P
+>&#13;This option affects the display of &lt;SELECT MULTIPLE&gt; boxes.  If the MySQL
+column type is "set", the number of lines displayed on multiple
+selection filters is specified as:
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN184"
+></A
+><P
+><B
+>Example 3-7. Multiple selections option</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['multiple'] = '4'; // default is 4</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Setting <CODE
+CLASS="VARNAME"
+>$opts['multiple']</CODE
+> to a large number may adversely
+affect the appearance of your form. Four (4) is the default.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.PAGE-ELEMENTS"
+></A
+>Special page elements</H1
+><P
+>&#13;There are some special page elements, that may be turned on or off by changing
+<CODE
+CLASS="VARNAME"
+>$opts['display']</CODE
+> array.&#13;</P
+><P
+>&#13;Setting the <CODE
+CLASS="VARNAME"
+>query</CODE
+> or <CODE
+CLASS="VARNAME"
+>sort</CODE
+> values to
+<CODE
+CLASS="CONSTANT"
+>true</CODE
+> will display the current query or sort order near the
+top of the table. To display the execution time of the query below the table,
+change the <CODE
+CLASS="VARNAME"
+>time</CODE
+> value from <CODE
+CLASS="CONSTANT"
+>false</CODE
+> to
+<CODE
+CLASS="CONSTANT"
+>true</CODE
+>.  Setting <CODE
+CLASS="VARNAME"
+>sort</CODE
+> to
+<CODE
+CLASS="CONSTANT"
+>true</CODE
+> is very helpful in understanding how cumulative
+sorting takes place. Setting <CODE
+CLASS="VARNAME"
+>num_pages</CODE
+> or <CODE
+CLASS="VARNAME"
+>num_records</CODE
+>
+to <CODE
+CLASS="CONSTANT"
+>false</CODE
+> will stop displaying corresponding values next to buttons.
+These values can be displayed also using <CODE
+CLASS="VARNAME"
+>$opts['buttons']</CODE
+> configuration array.&#13;</P
+><P
+>&#13;To display these three page elements use: 
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN206"
+></A
+><P
+><B
+>Example 3-8. Special page elements</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['display'] = array(
+	'query' =&#62; true,
+	'sort'  =&#62; true,
+	'time'  =&#62; true
+);</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;There is also one special <CODE
+CLASS="VARNAME"
+>$opts['display']['tabs']</CODE
+>
+variable, which generally controls the TABs feature. For more information see
+<A
+HREF="configuration.tabs-feature.html"
+><I
+>TABs feature</I
+></A
+> section.&#13;</P
+><P
+>&#13;Another special variable is <CODE
+CLASS="VARNAME"
+>$opts['display']['form']</CODE
+>, which
+controls displaying &lt;FORM&gt; and &lt;/FORM&gt; HTML tags. If this variable
+is not defined, its value is considered as true.  By default, form tags are
+displayed.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.URLS"
+></A
+>Images URL</H1
+><P
+>&#13;If graphic links are selected with navigation (for example by setting
+<CODE
+CLASS="VARNAME"
+>$opts['navigation']</CODE
+> to <CODE
+CLASS="CONSTANT"
+>'GD'</CODE
+>) then
+<CODE
+CLASS="VARNAME"
+>$opts['url']</CODE
+> can be used to specify the folder containing
+images. The default image location is normally one folder (or directory level) below the
+location of the <TT
+CLASS="FILENAME"
+>phpMyEdit.class.php</TT
+> file.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN220"
+></A
+><P
+><B
+>Example 3-9. Images URL</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['url'] = array('images' =&#62; 'images/'); </PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Other URLs for another elements may be added into this array in future.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.CODE-EXECUTION"
+></A
+>Code execution</H1
+><P
+>&#13;Since version 4.0, phpMyEdit automatically starts its execution.
+You can turn this feature off by setting: 
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN226"
+></A
+><P
+><B
+>Example 3-10. Turning off default execution</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['execute'] = 0; </PRE
+></DIV
+>&#13;</P
+><P
+>&#13;If variable <CODE
+CLASS="VARNAME"
+>$opts['execute']</CODE
+> is not defined, its value is
+considered as <CODE
+CLASS="CONSTANT"
+>1</CODE
+>.&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.unique-key.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.permission-options.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Unique key</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.general.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Permission options</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

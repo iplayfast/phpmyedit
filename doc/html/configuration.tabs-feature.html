@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>TABs feature</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Fields options"
+HREF="configuration.fields.html"><LINK
+REL="PREVIOUS"
+TITLE="PHP expressions"
+HREF="configuration.fields.php.html"><LINK
+REL="NEXT"
+TITLE="Options variability"
+HREF="configuration.options-variability.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.fields.php.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Fields options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.options-variability.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.TABS-FEATURE"
+>4.10. TABs feature</A
+></H1
+><P
+>&#13;Because the TABs feature is one of the most important phpMyEdit features, it
+deserves its own documentation section.&#13;</P
+><P
+>&#13;Tabbed groups of fields appear in specific page modes: Add, Change, coPy,
+View, or Delete. In List mode, when TAB settings are combined with <A
+HREF="configuration.basic-options.html#CONFIGURATION.OPTIONS"
+><I
+>Display options</I
+></A
+>, users can
+suppress the display of fields below the first TAB group.&#13;</P
+><P
+>&#13;This feature is for tables, which have more than a few fields. It enables you
+to group fields together into groups. Every group of fields then becomes
+accessible via TAB on the top or the bottom of the page, what is based on the
+<CODE
+CLASS="VARNAME"
+>['navigation']</CODE
+> settings. TAB has its own label, which can
+describe fields in a particular group.&#13;</P
+><P
+>&#13;TAB is defined in the first field of group. Every following field will belong
+to the same group under the same TAB untill the next TAB is defined. The first
+field must have its own TAB definition. If this definition is omitted, fields
+will belong to first default group and this group will be a permanent tab that
+will be always visible.&#13;</P
+><P
+>&#13;TAB definition is very simple. Just define the label on the TAB (1st field,
+5th field, 10th field, and so on).
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1228"
+></A
+><P
+><B
+>Example 4-39. TAB definition</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['tab'] = 'Counts';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;There is also possibility to define the default TAB. In this case, the array
+style initialization is required.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1232"
+></A
+><P
+><B
+>Example 4-40. Default TAB definition</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['tab'] = array(
+	'name'    =&#62; 'Personal data',
+	'default' =&#62; true
+);</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;In List mode, to initially display individual fields from only the first TAB
+group, apply <A
+HREF="configuration.basic-options.html#CONFIGURATION.OPTIONS"
+><I
+>Display options</I
+></A
+> to all fields below the first TAB group, for
+example:
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1237"
+></A
+><P
+><B
+>Example 4-41. Display options below the first TAB</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['options'] = 'AVCPD'; // or possibly 'AVCPDF'</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;For users with non-compliant JavaScript browsers, you can turn TABs feature
+off. The general control is achieved via
+<CODE
+CLASS="VARNAME"
+>$opts['display']['tabs']</CODE
+> variable. If not specified, its
+value is considered as <CODE
+CLASS="CONSTANT"
+>true</CODE
+>. Variable
+<CODE
+CLASS="VARNAME"
+>$opts['display']</CODE
+> is described in <A
+HREF="configuration.common-options.html#CONFIGURATION.PAGE-ELEMENTS"
+><I
+>Special page elements</I
+></A
+>
+sebsection.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1245"
+></A
+><P
+><B
+>Example 4-42. Turning TAB feature off</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['display']['tabs'] = false;</PRE
+></DIV
+>&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.fields.php.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.options-variability.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>PHP expressions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Options variability</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

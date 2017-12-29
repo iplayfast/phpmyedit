@@ -1,0 +1,445 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Languages</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="General options"
+HREF="configuration.general.html"><LINK
+REL="PREVIOUS"
+TITLE="Logging user actions"
+HREF="configuration.logging.html"><LINK
+REL="NEXT"
+TITLE="CGI variables"
+HREF="configuration.cgi-variables.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.logging.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. General options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.cgi-variables.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.LANGUAGES"
+>3.10. Languages</A
+></H1
+><P
+>&#13;The default language setting is the user's web browser language setting. Use
+it if possible. The following example forces the English language version, and
+the last forces the Slovak language version.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN591"
+></A
+><P
+><B
+>Example 3-28. Languages selection</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>// client language (default)
+$opts['language'] = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+
+$opts['language'] = 'EN'; // forces english language
+$opts['language'] = 'SK-UTF8'; // slovak language in UTF-8 encoding</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Available languages are:
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>CZ</CODE
+></TD
+><TD
+> &nbsp; czech</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>DE</CODE
+></TD
+><TD
+> &nbsp; german (standard)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>DK</CODE
+></TD
+><TD
+> &nbsp; danish</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>EL</CODE
+></TD
+><TD
+> &nbsp; greek (hellenic)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>EN</CODE
+></TD
+><TD
+> &nbsp; english</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>EN-US</CODE
+></TD
+><TD
+> &nbsp; english (United States)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>ES</CODE
+></TD
+><TD
+> &nbsp; spanish</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>ES-AR</CODE
+></TD
+><TD
+> &nbsp; spanish (argentinian)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>ES-MX</CODE
+></TD
+><TD
+> &nbsp; spanish (mexican)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>EU</CODE
+></TD
+><TD
+> &nbsp; basque</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>FR</CODE
+></TD
+><TD
+> &nbsp; french (standard)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>ID</CODE
+></TD
+><TD
+> &nbsp; indonesian</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>IT</CODE
+></TD
+><TD
+> &nbsp; italian (standard)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>JP</CODE
+></TD
+><TD
+> &nbsp; japanese</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>NL</CODE
+></TD
+><TD
+> &nbsp; dutch (standard)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>PL</CODE
+></TD
+><TD
+> &nbsp; polish</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>PT</CODE
+></TD
+><TD
+> &nbsp; portuguese (standard)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>PT-BR</CODE
+></TD
+><TD
+> &nbsp; portuguese (brazilian)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>RU</CODE
+></TD
+><TD
+> &nbsp; russian</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>SE</CODE
+></TD
+><TD
+> &nbsp; swedish</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>SK</CODE
+></TD
+><TD
+> &nbsp; slovak</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>TR</CODE
+></TD
+><TD
+> &nbsp; turkish</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>ZH</CODE
+></TD
+><TD
+> &nbsp; chinese (traditional)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="CONSTANT"
+>ZH-SG</CODE
+></TD
+><TD
+> &nbsp; chinese (Singapore)</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;Language codes are based on ISO-3166 standard, which is available on many
+places, for example <A
+HREF="http://www.samspade.org/d/iso3166.html"
+TARGET="_top"
+>here</A
+>.&#13;</P
+><P
+>&#13;You can append encoding strings to your language, such as
+<CODE
+CLASS="CONSTANT"
+>-UTF8</CODE
+> or <CODE
+CLASS="CONSTANT"
+>-LATIN2</CODE
+>. If no encoding
+is specified, backward compatible default one will be used.
+
+<DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="../images/warning.gif"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Default encoding will be switched in next release to
+<CODE
+CLASS="CONSTANT"
+>UTF-8</CODE
+> in every available language.</P
+></TD
+></TR
+></TABLE
+></DIV
+>&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.logging.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.cgi-variables.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Logging user actions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.general.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>CGI variables</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

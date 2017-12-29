@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>phpMyEdit-slide</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensions"
+HREF="extensions.html"><LINK
+REL="PREVIOUS"
+TITLE="Extensions"
+HREF="extensions.html"><LINK
+REL="NEXT"
+TITLE="phpMyEdit-report"
+HREF="extensions.report.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="extensions.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Extensions</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="extensions.report.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="EXTENSIONS.SLIDE"
+>5.2. phpMyEdit-slide</A
+></H1
+><P
+>&#13;phpMyEdit-slide can create slideshow with ability to view and/or edit records.
+Everytime is exactly one record shown. Record can be displayed in view or edit
+mode. View mode looks like "view" functionality in normal phpMyEdit, change mode
+looks like "change" functionality in normal phpMyEdit.&#13;</P
+><P
+>&#13;The only difference is that two buttons, <SPAN
+CLASS="GUIBUTTON"
+>Prev</SPAN
+> and
+<SPAN
+CLASS="GUIBUTTON"
+>Next</SPAN
+>, are displayed in addition to common view/edit buttons to
+provide ability of going to the next or previous record. This extension
+purpously disable "add", "copy", "delete", and "table listing"
+functionalities.&#13;</P
+><P
+>&#13;Here are configuration variables related to extension. All of these
+phpMyEdit-slide options are optional.
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$opts['ext']['rec']</CODE
+></TD
+><TD
+> -- primary key value of record to display initially</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$opts['ext']['next_disable']</CODE
+></TD
+><TD
+> -- disable <SPAN
+CLASS="GUIBUTTON"
+>Next</SPAN
+> button</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$opts['ext']['prev_disable']</CODE
+></TD
+><TD
+> -- disable <SPAN
+CLASS="GUIBUTTON"
+>Prev</SPAN
+> button</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;Following variables are not options, but they are used internally by
+extension. They can be used for getting some information for example in
+triggers.
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$opts['ext']['next']</CODE
+></TD
+><TD
+> -- primary key value of next record</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$opts['ext']['prev']</CODE
+></TD
+><TD
+> -- primary key value of previous record</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;To use this extension you have to include
+<TT
+CLASS="FILENAME"
+>extensions/phpMyEdit-slide.class.php</TT
+> file and call
+<CODE
+CLASS="VARNAME"
+>new phpMyEdit_slide($opts)</CODE
+> instead of common phpMyEdit class
+file.&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="extensions.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="extensions.report.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Extensions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="extensions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>phpMyEdit-report</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,318 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>URL linking</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Fields options"
+HREF="configuration.fields.html"><LINK
+REL="PREVIOUS"
+TITLE="Output control"
+HREF="configuration.output-control.html"><LINK
+REL="NEXT"
+TITLE="SQL expressions"
+HREF="configuration.fields.sql.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.output-control.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Fields options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.fields.sql.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.URL-LINKING"
+>4.7. URL linking</A
+></H1
+><P
+>&#13;Fields can be made 'clickable' in the display using <CODE
+CLASS="VARNAME"
+>['URL']</CODE
+>
+variable. Primary examples follows:
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1108"
+></A
+><P
+><B
+>Example 4-30. Simple URL examples</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['URL'] = 'http://$link'; 
+$opts['fdd']['col_name']['URL'] = 'mailto:$value'; </PRE
+></DIV
+>
+&#13;</P
+><P
+>&#13;Note that the following are available as variables for usage in <CODE
+CLASS="VARNAME"
+>['URL']</CODE
+>:
+
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$key</CODE
+></TD
+><TD
+> -- key field for record</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$name</CODE
+></TD
+><TD
+> -- name of the field</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$value</CODE
+></TD
+><TD
+> -- value of the field</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$link</CODE
+></TD
+><TD
+> -- not modified raw value</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$css</CODE
+></TD
+><TD
+> -- CSS class name</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$page</CODE
+></TD
+><TD
+> -- this HTML page</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$url</CODE
+></TD
+><TD
+> -- CGI variables</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;To open a link in a new web browser window use: 
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1136"
+></A
+><P
+><B
+>Example 4-31. URL target example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['URLtarget'] = '_blank'; </PRE
+></DIV
+>&#13;</P
+><P
+>&#13;To display alternative link text use:
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1140"
+></A
+><P
+><B
+>Example 4-32. URL display example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['URLdisp'] = 'Launch Page'; </PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Old 3.5 behaviour is also supported via <CODE
+CLASS="VARNAME"
+>['URLprefix']</CODE
+>. It
+will prepend string before if it is not already present there. Variable
+<CODE
+CLASS="VARNAME"
+>['URLpostfix']</CODE
+> similary to <CODE
+CLASS="VARNAME"
+>['URLprefix']</CODE
+>
+will append string after if it is not already present there.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1147"
+></A
+><P
+><B
+>Example 4-33. URL prefix and postfix</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['URLprefix'] = 'mailto:'; 
+$opts['fdd']['col_name']['URLprefix'] = 'http://'; 
+$opts['fdd']['col_name']['URLprefix'] = array('http://', 'ftp://'); </PRE
+></DIV
+>&#13;</P
+><P
+>&#13;In the third example you can see that array of prefixes or postfixes are
+supported. First member of array is added to URL value only if none from the
+elements was matched. This is especially useful in having intelligent URL
+links with added ability to enter addresses like "www.platon.sk" without
+preceding "http://".&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.output-control.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.fields.sql.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Output control</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>SQL expressions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

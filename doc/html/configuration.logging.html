@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Logging user actions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="General options"
+HREF="configuration.general.html"><LINK
+REL="PREVIOUS"
+TITLE="Triggers"
+HREF="configuration.triggers.html"><LINK
+REL="NEXT"
+TITLE="Languages"
+HREF="configuration.languages.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.triggers.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. General options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.languages.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.LOGGING"
+>3.9. Logging user actions</A
+></H1
+><P
+>&#13;You can log user actions into a special "changelog" table. You must have
+table created and specified for phpMyEdit using the <CODE
+CLASS="VARNAME"
+>$opts['logtable']</CODE
+>
+option.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN550"
+></A
+><P
+><B
+>Example 3-26. Logging</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['logtable'] = 'changelog';</PRE
+></DIV
+>
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN553"
+></A
+><P
+><B
+>Example 3-27. Log table schema</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>CREATE TABLE changelog (
+	updated    timestamp(14)  default NULL,
+	user       varchar(255)   default NULL,
+	host       varchar(255)   default NULL,
+	operation  varchar(255)   default NULL,
+	tab        varchar(255)   default NULL,
+	rowkey     varchar(255)   default NULL,
+	col        varchar(255)   default NULL,
+	oldval     blob           default NULL,
+	newval     blob           default NULL
+);</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;phpMyEdit provides also the possibility of notifying about performed user actions by
+sending informational e-mail. This feature configuration is done via
+<CODE
+CLASS="VARNAME"
+>$opts['notify']</CODE
+> array with following variables notation. Note that
+on every place where one e-mail address should be written, it is possible to
+have array of multiple e-mail addresses there. This feature is provided for
+informing more than one user about particular performed action.
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$opts['notify']['from']</CODE
+></TD
+><TD
+> &nbsp; sender envelope e-mail address (webmaster@SERVER_NAME by default)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$opts['notify']['prefix']</CODE
+></TD
+><TD
+> &nbsp; prefix of e-mail messages subject (no prefix by default)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$opts['notify']['wrap']</CODE
+></TD
+><TD
+> &nbsp; maximum width of e-mail message body (by default <CODE
+CLASS="CONSTANT"
+>72</CODE
+> will be used)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$opts['notify']['insert']</CODE
+></TD
+><TD
+> &nbsp; e-mail address for insert action notification</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$opts['notify']['update']</CODE
+></TD
+><TD
+> &nbsp; e-mail address for update action notification</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$opts['notify']['delete']</CODE
+></TD
+><TD
+> &nbsp; e-mail address for delete action notification</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$opts['notify']['all']</CODE
+></TD
+><TD
+> &nbsp; e-mail address for all actions notification</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;In both cases, changelog table and e-mail notyfing are values of "user"
+extracted from the variables in following order:
+<CODE
+CLASS="VARNAME"
+>$_SERVER['REMOTE_USER']</CODE
+>,
+<CODE
+CLASS="VARNAME"
+>$_SERVER['REMOTE_USER']</CODE
+> and global variable
+<CODE
+CLASS="VARNAME"
+>$REMOTE_USER</CODE
+>. Similary "host" variable is checked in
+<CODE
+CLASS="VARNAME"
+>$_SERVER['REMOTE_ADDR']</CODE
+>, than in
+<CODE
+CLASS="VARNAME"
+>$_SERVER['REMOTE_ADDR']</CODE
+> and at the end in global variable
+<CODE
+CLASS="VARNAME"
+>$REMOTE_ADDR</CODE
+>.&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.triggers.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.languages.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Triggers</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.general.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Languages</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

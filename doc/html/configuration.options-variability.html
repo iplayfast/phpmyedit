@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Options variability</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Fields options"
+HREF="configuration.fields.html"><LINK
+REL="PREVIOUS"
+TITLE="TABs feature"
+HREF="configuration.tabs-feature.html"><LINK
+REL="NEXT"
+TITLE="Extensions"
+HREF="extensions.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.tabs-feature.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Fields options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="extensions.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.OPTIONS-VARIABILITY"
+>4.11. Options variability</A
+></H1
+><P
+>&#13;This section does not descibe new field options. It just extends the
+possibility of their initialization. Options variability can be applied to
+each field option.&#13;</P
+><P
+>&#13;There is often a situation when you want to have some field option in effect
+only on particular page(s). But on other pages you do not want to have this
+option in effect. There are pages where a field option should be taken into
+consideration, but there are also pages where the option should not appear.&#13;</P
+><P
+>&#13;A good example for this is the <CODE
+CLASS="VARNAME"
+>['trimlen']</CODE
+> option. Imagine you set
+something like this:
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1254"
+></A
+><P
+><B
+>Example 4-43. Init without options variability</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['trimlen'] = 30;</PRE
+></DIV
+>
+
+This will trim the maximum length of text to 30 characters on all possible
+pages, which in this case are:
+
+<P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><SPAN
+>table list</SPAN
+></LI
+><LI
+><SPAN
+>table filter</SPAN
+></LI
+><LI
+><SPAN
+>record view</SPAN
+></LI
+><LI
+><SPAN
+>record delete</SPAN
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;This is nice and it will work as expected, however on the record view page it
+may be desirable to see the whole field content, not only first 30 characters.
+Similarly we could want this also for delete page.&#13;</P
+><P
+>&#13;Thus there is a possiblity to restrict a particular option to affect only
+selected types of pages. In our case we want to resctrict the
+<CODE
+CLASS="VARNAME"
+>['trimlen']</CODE
+> option to affect the table listing and table filtering
+pages. This can be done in the following way. Take a look at "|LF" string in
+the definition.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1269"
+></A
+><P
+><B
+>Example 4-44. Init with options variability</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['trimlen|LF'] = 30;</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Each restriction letter stands for particular page type. They are the same as
+those described in list under <A
+HREF="configuration.basic-options.html#CONFIGURATION.OPTIONS"
+><I
+>Display options</I
+></A
+> subsection.&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.tabs-feature.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="extensions.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>TABs feature</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Extensions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

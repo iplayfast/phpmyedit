@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>General options</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Result script"
+HREF="installation.result-script.html"><LINK
+REL="NEXT"
+TITLE="Unique key"
+HREF="configuration.unique-key.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="installation.result-script.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.unique-key.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="CONFIGURATION.GENERAL"
+></A
+>Chapter 3. General options</H1
+><P
+>&#13;Open the script in your text editor. No HTML header or footer is created, thus
+you may want to include a header at the top of the script, and include a
+footer at the end of the script.&#13;</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.MYSQL-OPTIONS"
+>3.1. Database connection</A
+></H1
+><P
+>&#13;Various options are configured near the top of the script, most notably the
+database logon. For security reasons, you may want to copy/paste the logon
+options to a separate, included file. &#13;</P
+><P
+>&#13;MySQL logon options host name, user name, password, database, and table appear
+in the following format. &#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN136"
+></A
+><P
+><B
+>Example 3-1. Database connection options</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['hn'] = 'localhost';
+$opts['un'] = 'username';
+$opts['pw'] = 'password';
+$opts['db'] = 'database';
+$opts['tb'] = 'table';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Recommended usage is, that the first four options shown above should be moved
+to a separate, included file.&#13;</P
+><P
+>&#13;It is a rather common situation to use phpMyEdit inside larger project. To
+prevent phpMyEdit from creating an additional persistent database connection,
+supply the <CODE
+CLASS="VARNAME"
+>$opts['dbh']</CODE
+> option. In the example below,
+<CODE
+CLASS="VARNAME"
+>$your_project_db_handle</CODE
+> represents a previously allocated
+MySQL database handle. When <CODE
+CLASS="VARNAME"
+>$opts['dbh']</CODE
+> is specified, the
+first four options appearing above are ignored. &#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN145"
+></A
+><P
+><B
+>Example 3-2. Supplying allocated connection</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['dbh'] = $your_project_db_handle;</PRE
+></DIV
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="installation.result-script.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.unique-key.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Result script</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Unique key</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Data removal protection</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Hints & tips"
+HREF="hints-and-tips.html"><LINK
+REL="PREVIOUS"
+TITLE="Handling national characters"
+HREF="hints-and-tips.national-characters.html"><LINK
+REL="NEXT"
+TITLE="Integration into other systems"
+HREF="hints-and-tips.integration.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="hints-and-tips.national-characters.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 6. Hints &amp; tips</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="hints-and-tips.integration.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="HINTS-AND-TIPS.DATA-REMOVAL-PROTECTION"
+>6.3. Data removal protection</A
+></H1
+><P
+>&#13;One very old database maintenance rule basically says:&#13;</P
+><P
+>&#13;<A
+NAME="AEN1434"
+></A
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CELLSPACING="0"
+CELLPADDING="0"
+CLASS="BLOCKQUOTE"
+><TR
+><TD
+WIDTH="10%"
+VALIGN="TOP"
+>&nbsp;</TD
+><TD
+VALIGN="TOP"
+><P
+>No entry should by removed from a database, but just marked as deleted.</P
+></TD
+><TD
+WIDTH="10%"
+VALIGN="TOP"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+COLSPAN="2"
+ALIGN="RIGHT"
+VALIGN="TOP"
+>--<SPAN
+CLASS="ATTRIBUTION"
+>unknown author</SPAN
+></TD
+><TD
+WIDTH="10%"
+>&nbsp;</TD
+></TR
+></TABLE
+>&#13;</P
+><P
+>&#13;According to this rule, we may want to implement similar functionality also in
+phpMyEdit and it is possible, of&nbsp;course.&#13;</P
+><P
+>&#13;First of all we need to set-up phpMyEdit to list only valid non-deleted records.
+This can be accomplished using <CODE
+CLASS="VARNAME"
+>$opts['filters']</CODE
+>
+configuration option. We suppose that we have table where a column named
+<CODE
+CLASS="VARNAME"
+>deleted</CODE
+> indicates if record is deleted or not. 
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1441"
+></A
+><P
+><B
+>Example 6-3. Non-deleted records listing</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['filters'] = 'deleted IS NULL OR deleted = 0';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Than we have to create a "delete before" trigger and we are done. Trigger PHP code
+should look similar to this example:
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1445"
+></A
+><P
+><B
+>Example 6-4. Trigger for marking records as deleted</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$query2 = sprintf('UPDATE %s SET deleted = 1 WHERE id = %d',
+                  $this-&#62;tb, $newvals['id']);
+$this-&#62;MyQuery($query2);
+return false;</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;To recover a particular record just change the value in the <CODE
+CLASS="VARNAME"
+>deleted</CODE
+>
+column from&nbsp;<CODE
+CLASS="CONSTANT"
+>1</CODE
+>&nbsp;to&nbsp;<CODE
+CLASS="CONSTANT"
+>0</CODE
+>
+using your SQL client or interface (for example using
+<SPAN
+CLASS="APPLICATION"
+>phpMyAdmin</SPAN
+>).&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="hints-and-tips.national-characters.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="hints-and-tips.integration.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Handling national characters</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="hints-and-tips.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Integration into other systems</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

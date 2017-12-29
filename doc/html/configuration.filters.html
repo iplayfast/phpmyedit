@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Filters</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="General options"
+HREF="configuration.general.html"><LINK
+REL="PREVIOUS"
+TITLE="Navigation"
+HREF="configuration.navigation.html"><LINK
+REL="NEXT"
+TITLE="Triggers"
+HREF="configuration.triggers.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.navigation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. General options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.triggers.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.FILTERS"
+>3.7. Filters</A
+></H1
+><P
+>&#13;Table-level filter capability (if set) is included in the WHERE clause of any
+generated SELECT statement. This gives you ability to work with a subset of data
+from table.&#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN379"
+></A
+><P
+><B
+>Example 3-20. Filter examples</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['filters'] = 'column1 like "%11%" AND column2 &#60; 17';
+
+$opts['filters'] = 'section_id = 9';
+
+$opts['filters'] = 'PMEtable0.sessions_count &#62; 200';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;You can also pass an array to this option. If you do so, than array items are
+put together with "AND" SQL statement.&#13;</P
+><P
+>&#13;When generating a query, phpMyEdit redefines/aliases the table names for easy
+accessing of particular table fields in the main table and in the tables used
+in JOIN clauses as well. The main table name is changed to <SPAN
+CLASS="DATABASE"
+>PMEtable0</SPAN
+>, tables used in JOIN clauses have their name like
+<SPAN
+CLASS="DATABASE"
+>PMEjoinN</SPAN
+> where <CODE
+CLASS="VARNAME"
+>N</CODE
+> is JOIN table order.&#13;</P
+><P
+>&#13;We recommend that you look at the generated SQL queries in your MySQL log file in
+order to know how database the table was aliased. Finally, the described
+approach is needed only if you are accessing a field name which occurs in more
+than one table of SQL query (thus MySQL cannot exactly determine what is
+meant by "field_name").&#13;</P
+><P
+>&#13;For future development is planned an initialization like the following one.
+
+<PRE
+CLASS="PROGRAMLISTING"
+>$opts['filters'] = array(
+	'col_name_1' =&#62; 'value_1',
+	'col_name_2' =&#62; 'value_2'
+);</PRE
+>
+
+The main advantage of this approach will be that <CODE
+CLASS="VARNAME"
+>col_name_1</CODE
+> and
+<CODE
+CLASS="VARNAME"
+>col_name_2</CODE
+> fields are automatically considered as read-only on
+display record pages with pre-set <CODE
+CLASS="CONSTANT"
+>value_1</CODE
+>, <CODE
+CLASS="CONSTANT"
+>value_2</CODE
+>
+and without the need to enter them manually.&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.navigation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.triggers.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Navigation</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.general.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Triggers</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

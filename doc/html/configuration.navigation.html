@@ -1,0 +1,526 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Navigation</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="General options"
+HREF="configuration.general.html"><LINK
+REL="PREVIOUS"
+TITLE="Sorting"
+HREF="configuration.sorting.html"><LINK
+REL="NEXT"
+TITLE="Filters"
+HREF="configuration.filters.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.sorting.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. General options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.filters.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.NAVIGATION"
+>3.6. Navigation</A
+></H1
+><P
+>&#13;The style and location of navigational links is a combined setting. The
+generated form will have various buttons, such as <SPAN
+CLASS="GUIBUTTON"
+>Next</SPAN
+>,
+<SPAN
+CLASS="GUIBUTTON"
+>Prev</SPAN
+>, <SPAN
+CLASS="GUIBUTTON"
+>Save</SPAN
+>,
+<SPAN
+CLASS="GUIBUTTON"
+>Cancel</SPAN
+>, etc. Their location relative to the table can be
+changed. Button positions are:
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>U</CODE
+></TD
+><TD
+> -- up / above table</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>D</CODE
+></TD
+><TD
+> -- down / below table (default)</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;Button possitions should be combined with navigation styles. The style of
+navigational links may be text, buttons, or graphic images (icons):
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>B</CODE
+></TD
+><TD
+> -- buttons (default)</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>T</CODE
+></TD
+><TD
+> -- text links</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>G</CODE
+></TD
+><TD
+> -- graphic links</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;Possible combinations include:
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN316"
+></A
+><P
+><B
+>Example 3-16. Navigation possibilities</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['navigation'] = 'DB'; // buttons below table
+$opts['navigation'] = 'DT'; // text links below table
+$opts['navigation'] = 'DG'; // graphics below table
+$opts['navigation'] = 'UB'; // buttons above table
+$opts['navigation'] = 'UT'; // text links above table
+$opts['navigation'] = 'UG'; // graphics above table
+
+$opts['navigation'] = 'UDBTG' // all navigations styles</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;As you can see from the last example in box above, all navigation styles can be
+mixed up together to fit your needs. There is no functionality difference
+between navigation with graphic/text links and navigation using radio buttons
+selection.&#13;</P
+><P
+>&#13;If you are not satisfied with order of buttons, or you want to remove certain buttons,
+you can use <CODE
+CLASS="VARNAME"
+>$opts['buttons']</CODE
+> option. In this option, you can specify
+exact buttons to be displayed, even with custom ones. There are several common reasons
+to remove some buttons: when having huge amount of pages, dropdown box creation is too long,
+display save button only at the bottom of the page to force users to scroll through screeen before
+adding a new record, and so on.&#13;</P
+><P
+>&#13;Buttons on phpMyEdit pages can be divided into several groups. These groups then specify keywords
+which are used when declaring a button in <CODE
+CLASS="VARNAME"
+>$opts['buttons']</CODE
+>. If an element in
+<CODE
+CLASS="VARNAME"
+>$opts['buttons']</CODE
+> is not matching a keyword, it is translated using language files.
+If an element is an array, it is outputed as a custom button, as shown below.
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+> navigation </TD
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>first, &#60;&#60;, prev, &#60;, next, &#62;, last, &#62;&#62; </CODE
+></TD
+></TR
+><TR
+><TD
+> go to </TD
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>goto, goto_combo, goto_text </CODE
+></TD
+></TR
+><TR
+><TD
+> operation </TD
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>add, view, change, delete, copy </CODE
+></TD
+></TR
+><TR
+><TD
+> confirmation </TD
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>save, more, cancel </CODE
+></TD
+></TR
+><TR
+><TD
+> statistics </TD
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>current_page, total_pages, total_recs </CODE
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+
+Navigation and go to group can be used in list or filter mode to jump several pages ahead or back.
+Operation group moves user to another mode, namely one of ACPDV. Confirmation buttons are used to
+confirm actions in ACPDV. While cancel is self explanatory, save and more might be confusing.
+Save is used to confirm action and return to L mode. More means confirming action and return to
+current mode. Save button is usually displayed as Save, however in D mode it is as Delete and in A
+mode as Add. More is displayed as either More or Apply. Keywords in the statistics group display
+numbers as their names suggest.&#13;</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN341"
+></A
+><P
+><B
+>Example 3-17. Default buttons</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['buttons']['L']['up'] = array('&#60;&#60;','&#60;','add','view','change','copy','delete',
+                                    '&#62;','&#62;&#62;','goto','goto_combo');
+$opts['buttons']['L']['down'] = $opts['buttons']['L']['up'];
+
+$opts['buttons']['F']['up'] = array('&#60;&#60;','&#60;','add','view','change','copy','delete',
+                                    '&#62;','&#62;&#62;','goto','goto_combo');
+$opts['buttons']['F']['down'] = $opts['buttons']['F']['up'];
+
+$opts['buttons']['A']['up'] = array('save','more','cancel');
+$opts['buttons']['A']['down'] = $opts['buttons']['A']['up'];
+
+$opts['buttons']['C']['up'] = array('save','more','cancel');
+$opts['buttons']['C']['down'] = $opts['buttons']['C']['up'];
+
+$opts['buttons']['P']['up'] = array('save', 'cancel');
+$opts['buttons']['P']['down'] = $opts['buttons']['P']['up'];
+
+$opts['buttons']['D']['up'] = array('save','cancel');
+$opts['buttons']['D']['down'] = $opts['buttons']['D']['up'];
+
+$opts['buttons']['V']['up'] = array('change','cancel');
+$opts['buttons']['V']['down'] = $opts['buttons']['V']['up'];</PRE
+></DIV
+><P
+>&#13;A button can be disabled for two reasons. A navigation button when there are no next or previous
+pages or an operation button if certain operation is not permitted to the user. By default, all
+disabled buttons are displayed and marked as disabled. If you do not want to show disabled buttons
+at all, prepend '-' to keyword. If you want a disabled button to show as enabled, prepend '+'.
+This will allow users to successfully push this button, however no meaningfull action will be taken.
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>next</CODE
+></TD
+><TD
+> -- show next button and mark disabled if appropriate</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>-next</CODE
+></TD
+><TD
+> -- do not show next button if disabled</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;You may also specify custom buttons, which values can be used outside of phpMyEdit. The first way
+to specify a custom button is to use phpMyEdit htmlSubmit method. In this way, value of this submit
+button is translated using language files into user specified language. Possible configuration
+is name, value, css class name, java script and disabled.
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>name</CODE
+></TD
+><TD
+> -- name of the submit button</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>value</CODE
+></TD
+><TD
+> -- value of submit button</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>css</CODE
+></TD
+><TD
+> -- css class name</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>js</CODE
+></TD
+><TD
+> -- any other string place within button tags, mostly java script</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>disabled</CODE
+></TD
+><TD
+> -- 1 button is disabled, 0 button is not disabled</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+
+
+Second way of declaring custom buttons, is to declare actuall html code of the button. Note that
+using this method, any html entity can be outputted.&#13;</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN369"
+></A
+><P
+><B
+>Example 3-18. Custom buttons</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['buttons']['V']['up'] = array(
+	'change',
+	'cancel',
+	array('name' =&#62; 'pme_back', 'value' =&#62; 'Back to main menu',
+	      'css' =&#62; 'pme-backtomenu', 'disabled' =&#62; false),
+	'Go to:',
+	array('code' =&#62; '&#60;SELECT&#62;&#60;OPTION&#62;....&#60;/OPTION&#62;&#60;/SELECT&#62;'),
+);
+$opts['buttons']['V']['down'] = $opts['buttons']['V']['up'];</PRE
+></DIV
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN372"
+></A
+><P
+><B
+>Example 3-19. Buttons with large number of pages</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['buttons']['L']['up'] = array(
+	'-&#60;&#60;',
+	'-&#60;',
+	'Page',
+	'goto_text',
+	'of',
+	'total_pages',
+	'-&#62;',
+	'-&#62;&#62;');
+);
+$opts['buttons']['L']['down'] = $opts['buttons']['L']['up'];
+$opts['display']['num_pages'] = false;
+$opts['display']['num_records'] = false;</PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.sorting.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.filters.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Sorting</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.general.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Filters</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

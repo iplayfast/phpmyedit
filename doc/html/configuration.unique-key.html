@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Unique key</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="General options"
+HREF="configuration.general.html"><LINK
+REL="PREVIOUS"
+TITLE="General options"
+HREF="configuration.general.html"><LINK
+REL="NEXT"
+TITLE="Common options"
+HREF="configuration.common-options.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.general.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. General options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.common-options.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.UNIQUE-KEY"
+>3.2. Unique key</A
+></H1
+><P
+>&#13;Assuming that 'id' is the name of the MySQL column selected as the unique
+identifier when <TT
+CLASS="FILENAME"
+>phpMyEditSetup.php</TT
+> script was run, the
+key will appear in the script as: &#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN153"
+></A
+><P
+><B
+>Example 3-3. Unique key definition</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>// Name of field which is the unique key
+$opts['key'] = 'id';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;<DIV
+CLASS="IMPORTANT"
+><P
+></P
+><TABLE
+CLASS="IMPORTANT"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="../images/important.gif"
+HSPACE="5"
+ALT="Important"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>&#13;There were problems reported by phpMyEdit users regarding the usage of MySQL
+reserved word as an unique key name (the example for this is "key" name). Thus
+we recommend using another name of unique key. Usage of "id" or "ID"
+names should be safe and good idea.&#13;</P
+></TD
+></TR
+></TABLE
+></DIV
+>
+
+The column type for the unique numeric identifier should appear as: &#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN160"
+></A
+><P
+><B
+>Example 3-4. Unique key type definition</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>// Type of key field (int, real, string, date, etc.)
+$opts['key_type'] = 'int';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;The argument 'int' shown above indicates the column type is an integer. If the
+column type was a date then 'date' would appear above instead of 'int'. Other
+possible unique key types are 'real' or 'string'.&#13;</P
+><DIV
+CLASS="IMPORTANT"
+><P
+></P
+><TABLE
+CLASS="IMPORTANT"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="../images/important.gif"
+HSPACE="5"
+ALT="Important"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>&#13;If you are using 'real' key type and some problems with record manipulaton have
+occured, it is probably because your MySQL key datatype is 'float'. Comparsions
+with this datatype is a common problem in most computer languages (including SQL),
+because floating-point values are not exact values.  In most cases, changing
+the MySQL datatype from 'float' to 'double' and preserving 'real' as phpMyEdit key type
+should solve this problem.&#13;</P
+><P
+>&#13;For more information about this issue, read <A
+HREF="http://www.mysql.com/doc/en/No_matching_rows.html"
+TARGET="_top"
+>Solving Problems with No
+Matching Rows</A
+> chapter in the MySQL manual (in version 3.23.47 it was A.5.6).&#13;</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.general.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.common-options.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>General options</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.general.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Common options</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

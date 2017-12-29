@@ -1,0 +1,466 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Basic options</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Fields options"
+HREF="configuration.fields.html"><LINK
+REL="PREVIOUS"
+TITLE="Fields options"
+HREF="configuration.fields.html"><LINK
+REL="NEXT"
+TITLE="Booleans"
+HREF="configuration.fields.booleans.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Fields options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.fields.booleans.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.BASIC-OPTIONS"
+>4.2. Basic options</A
+></H1
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.NAME"
+></A
+>Field name</H1
+><P
+>&#13;When the MySQL column name is not appropriate for display as the title of the
+column in the displayed table, alternate text can be specified. To display the
+word "Subject" instead of the name "Topic" for the example column from previous
+chapter, add the following option to the script: &#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN827"
+></A
+><P
+><B
+>Example 4-2. Field name examples</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['topic']['name'] = 'Subject'; </PRE
+></DIV
+>&#13;</P
+><P
+>&#13;When creating MySQL tables for use with phpMyEdit, consider using the underscore
+character in certain field names. For example, a MySQL column named
+"last_name" will be displayed as "Last name" in tables created using phpMyEdit
+(underscore characters are replaced with a space).&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.HELP"
+></A
+>Guidance / Help</H1
+><P
+>&#13;Sometimes a short title can't be explicit enough, so it is neccessary to
+provide the user a large description on a given field when he is manipulating
+with field data. For this purpose was
+<CODE
+CLASS="VARNAME"
+>$opts['fdd']['col_name']['help']</CODE
+> option created. Content of this
+option will appear in the third column of record display pages (Add, View, Change,
+Copy and Delete modes).&#13;</P
+><P
+>&#13;This option is optional. If there is no <CODE
+CLASS="VARNAME"
+>['help']</CODE
+> option for all
+columns, the third "help" column will be omitted.&#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN837"
+></A
+><P
+><B
+>Example 4-3. Field guidance</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['topic']['help'] = 'Enter topic of article here.'; </PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Because the field content is not escaped, you can add any HTML markups there,
+for example hyperlink, JavaScript opening popup window, etc.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN841"
+></A
+><P
+><B
+>Example 4-4. Field guidance hyperlink</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['topic']['help'] = '&#60;a href="help.php?about=topic" target="_blank"&#62;?&#60;/a&#62;';</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.FIELDS.SELECT"
+></A
+>Selection boxes</H1
+><P
+>&#13;Specify field input type as text box, numeric comparison text box, drop-down
+selection, or multiple selection. The same input type will be used also for
+table filtering.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN846"
+></A
+><P
+><B
+>Example 4-5. Filter selections</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['select'] = 'T'; // text box
+$opts['fdd']['col_name']['select'] = 'N'; // numeric
+$opts['fdd']['col_name']['select'] = 'D'; // drop down 
+$opts['fdd']['col_name']['select'] = 'M'; // multiple selection 
+$opts['fdd']['col_name']['select'] = 'O'; // radio buttons
+$opts['fdd']['col_name']['select'] = 'C'; // checkboxes</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.OPTIONS"
+></A
+>Display options</H1
+><P
+>&#13;An optional parameter to control whether a field is displayed in the add,
+change, copy, delete, view, list, or filter views.
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>A</CODE
+></TD
+><TD
+> -- add</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>C</CODE
+></TD
+><TD
+> -- change</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>P</CODE
+></TD
+><TD
+> -- copy</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>V</CODE
+></TD
+><TD
+> -- view</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>D</CODE
+></TD
+><TD
+> -- delete</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>L</CODE
+></TD
+><TD
+> -- table list</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>F</CODE
+></TD
+><TD
+> -- table filter</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN874"
+></A
+><P
+><B
+>Example 4-6. Field display options</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['options'] = 'LF'; // shows only in table list/filter</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.INPUT"
+></A
+>Input settings</H1
+><P
+>&#13;There are also additional column-specific options. These apply to certain
+views or modes (add, change, delete, list). In the previous versions of phpMyEdit
+these flags was part of <CODE
+CLASS="VARNAME"
+>['options']</CODE
+> option. In the current
+5.7.1 version, the backward compatibility (BC) is preserved. However this
+will be removed in the future. Thus specify these flags as a part of
+<CODE
+CLASS="VARNAME"
+>['input']</CODE
+> options. Some other flags may be added into this
+option as well.
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>R</CODE
+></TD
+><TD
+> -- indicates a field is read only</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>W</CODE
+></TD
+><TD
+> -- indicates a field is a password field</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="CONSTANT"
+>H</CODE
+></TD
+><TD
+> -- indicates a field is to be hidden and marked as hidden</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN892"
+></A
+><P
+><B
+>Example 4-7. Other display options</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['input'] = 'H'; // hidden field
+$opts['fdd']['col_name']['input'] = 'P'; // password field
+$opts['fdd']['col_name']['input'] = 'R'; // read-only field</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.FIELDS.CSS"
+></A
+>CSS customization</H1
+><P
+>&#13;Per field, you can define field CSS class names postfix. This is especially
+useful in order to highlight one column in a table.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN897"
+></A
+><P
+><B
+>Example 4-8. Field CSS customization</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['css'] = array(
+		'postfix' =&#62; 'ColName'
+		);</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;More information about CSS handling can be found in the <A
+HREF="configuration.css.html"
+><I
+>CSS classes policy</I
+></A
+> section.&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.fields.booleans.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Fields options</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Booleans</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

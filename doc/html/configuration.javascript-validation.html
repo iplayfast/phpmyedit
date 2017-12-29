@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>JavaScript validation</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Fields options"
+HREF="configuration.fields.html"><LINK
+REL="PREVIOUS"
+TITLE="Booleans"
+HREF="configuration.fields.booleans.html"><LINK
+REL="NEXT"
+TITLE="Input restrictions"
+HREF="configuration.input-restrictions.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.fields.booleans.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Fields options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.input-restrictions.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.JAVASCRIPT-VALIDATION"
+>4.4. JavaScript validation</A
+></H1
+><P
+>&#13;phpMyEdit users can benefit from the JavaScript scripting language, when
+validating input values before the form is submited.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.FIELDS.JS.REQUIRED"
+></A
+>Required fields</H1
+><P
+>&#13;Simple validation JavaScript can be generated to prevent null
+entries by the user. If an entry is required for a particular field, set the
+<CODE
+CLASS="VARNAME"
+>['js']['required']</CODE
+> option to <CODE
+CLASS="CONSTANT"
+>true</CODE
+>. 
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN936"
+></A
+><P
+><B
+>Example 4-12. Required fields</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['js']['required'] = true;
+$opts['fdd']['col_name']['js']['required'] = false;</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.FIELDS.JS.REGEXP"
+></A
+>Regular expressions</H1
+><P
+>&#13;JavaScript regular expressions can be a powerful way to make interactive input
+validation. When used, input must match the desired regular expression defined
+in&nbsp;the&nbsp;<CODE
+CLASS="VARNAME"
+>$opts['fdd']['col_name']['js']['regexp']</CODE
+>.
+If a field does not match, a JavaScript alert will be invoked to force the user
+to change entered value.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN942"
+></A
+><P
+><B
+>Example 4-13. Regular expression example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['js']['regexp'] = '/^[0-9]*$/';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Regular expressions are written in Perl compatible style. The expression above
+allows the form to submit only when numeric characters
+<CODE
+CLASS="CONSTANT"
+>0-9</CODE
+> are entered in the field. An empty value is also
+allowed, but you can use <CODE
+CLASS="VARNAME"
+>['js']['regexp']</CODE
+> in combination
+with <CODE
+CLASS="VARNAME"
+>['js']['required']</CODE
+> to prevent empty entries.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.FIELDS.JS.HINT"
+></A
+>Hints</H1
+><P
+>&#13;When the <CODE
+CLASS="VARNAME"
+>['js']['required']</CODE
+> option is used and the value
+entered is empty, or the characters entered do not match the defined
+<CODE
+CLASS="VARNAME"
+>['js']['regexp']</CODE
+>, a&nbsp;warning with the default message
+is displayed. This message can be changed using
+<CODE
+CLASS="VARNAME"
+>['js']['hint']</CODE
+>. This is especially useful for advising the
+user about field-specific data input restrictions.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN954"
+></A
+><P
+><B
+>Example 4-14. JavaScript hint</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['js']['hint']
+  = 'Please enter only numbers in the "col_name" field.';</PRE
+></DIV
+>&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.fields.booleans.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.input-restrictions.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Booleans</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Input restrictions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

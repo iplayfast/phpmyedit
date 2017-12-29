@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Fields options</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="CSS classes policy"
+HREF="configuration.css.html"><LINK
+REL="NEXT"
+TITLE="Basic options"
+HREF="configuration.basic-options.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.css.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.basic-options.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="CONFIGURATION.FIELDS"
+></A
+>Chapter 4. Fields options</H1
+><P
+>&#13;This chapter deal with options related to particular database columns. Later
+there will be often used term <I
+CLASS="FIRSTTERM"
+>field</I
+>, what means exactly the same
+thing as <I
+CLASS="FIRSTTERM"
+>column</I
+>.&#13;</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.FIELDS-OVERVIEW"
+>4.1. Definition overview</A
+></H1
+><P
+>&#13;Fields will be displayed in table columns left to right on the screen in the
+order in which they appear in the script. Re-arrange the order of the arrays in
+order to alter the order in which columns are displayed. &#13;</P
+><P
+>&#13;Display of a particular column can also be suppressed. Below is an example of
+the array for a column named 'topic': &#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN805"
+></A
+><P
+><B
+>Example 4-1. Basic field definition</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['topic'] = array( 
+	'name'     =&#62; 'Topic', 
+	'select'   =&#62; 'T', 
+	'maxlen'   =&#62; 100, 
+	'nowrap'   =&#62; false, 
+	'sort'     =&#62; true 
+); </PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Because so many questions related to <ACRONYM
+CLASS="ACRONYM"
+>PHP</ACRONYM
+> programming language
+semantics and basis are often asked, please point on the following explanation
+of "two" ways of possible field options initialization. If you are enough
+experienced and familiar with <ACRONYM
+CLASS="ACRONYM"
+>PHP</ACRONYM
+>, feel free to skip to the next
+section.&#13;</P
+><P
+>&#13;As it was mentioned, there are two ways how to initialize array in
+<ACRONYM
+CLASS="ACRONYM"
+>PHP</ACRONYM
+>.
+
+
+<P
+></P
+><OL
+COMPACT="COMPACT"
+TYPE="1"
+><LI
+><SPAN
+>Direct one using
+<CODE
+CLASS="VARNAME"
+>$opts['fdd']['col_name']&nbsp;=&nbsp;array('option'&nbsp;=&#62;&nbsp;'value')</CODE
+>
+which is showed above.</SPAN
+></LI
+><LI
+><SPAN
+>Postinitialization one using
+<CODE
+CLASS="VARNAME"
+>$opts['fdd']['col_name']['option']&nbsp;=&nbsp;'value'</CODE
+>
+which is used in many examples in this documentation.</SPAN
+></LI
+></OL
+>&#13;</P
+><P
+>&#13;You may realize, that it is the same if you will change or add option into basic
+field definition (see example <CODE
+CLASS="FUNCTION"
+>array()</CODE
+> and notes in first point
+above) or you will add separated option initialization after this field
+definition as it is described in second case.&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.css.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.basic-options.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CSS classes policy</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Basic options</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

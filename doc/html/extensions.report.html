@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>phpMyEdit-report</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensions"
+HREF="extensions.html"><LINK
+REL="PREVIOUS"
+TITLE="phpMyEdit-slide"
+HREF="extensions.slide.html"><LINK
+REL="NEXT"
+TITLE="phpMyEdit-htmlarea"
+HREF="extensions.htmlarea.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="extensions.slide.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Extensions</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="extensions.htmlarea.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="EXTENSIONS.REPORT"
+>5.3. phpMyEdit-report</A
+></H1
+><P
+>&#13;phpMyEdit-report extension is provided for easy table report creation. There is
+often a need for selecting particular fields from table with applying specific
+filter options and finally write out chosen subset of data (report) to HTML
+page.&#13;</P
+><P
+>&#13;Navigation is easy to use. Field selection menu would be displayed if
+<CODE
+CLASS="VARNAME"
+>fields_select</CODE
+> parameter is passed by GET or POST HTTP method
+to PHP script and it has non-empty value. This field selection menu contains
+list of checkboxes connected with columns, list of filtering input fields and
+also button for report creation. Every report page has ability to return back
+into field selection. It is possible to specify amount of records on report
+page, what is by default set to unlimited.&#13;</P
+><P
+>&#13;Extension can completelly work without cookies. However it uses cookies to
+have a memory, where last selected report is stored. When user leaves report
+PHP script and comes back after some time, a last selected report should be
+predefined in checkboxes and input fields on fields selection screen.
+Detection for cookie usage is done automatically. If HTTP headers was already
+sent, cookies are not used, because they will cause an ugly warning. Otherwise
+cookies are used for described kind of memory.&#13;</P
+><P
+>&#13;To use this extension simply include
+<TT
+CLASS="FILENAME"
+>extensions/phpMyEdit-report.class.php</TT
+> file and call
+<CODE
+CLASS="VARNAME"
+>new phpMyEdit_report($opts)</CODE
+> instead of common phpMyEdit class
+file. Extension specific configuration parameters currently do not exist, thus
+all table columns are allowed to be selected in final report. This will surely
+change in future, because table could have columns that need to be
+unselectable for final report (such as password column or similar).&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="extensions.slide.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="extensions.htmlarea.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>phpMyEdit-slide</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="extensions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>phpMyEdit-htmlarea</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,465 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Output control</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Fields options"
+HREF="configuration.fields.html"><LINK
+REL="PREVIOUS"
+TITLE="Input restrictions"
+HREF="configuration.input-restrictions.html"><LINK
+REL="NEXT"
+TITLE="URL linking"
+HREF="configuration.url-linking.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.input-restrictions.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Fields options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.url-linking.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.OUTPUT-CONTROL"
+>4.6. Output control</A
+></H1
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.COLATTRS"
+></A
+>Cell attributes</H1
+><P
+>&#13;For setting simple HTML attributes of displayed field cells, there is a
+<CODE
+CLASS="VARNAME"
+>['colattrs']</CODE
+> option provided.&#13;</P
+><P
+>&#13;For example the alignment of the text inside a column can be controlled using
+the usual HTML <CODE
+CLASS="VARNAME"
+>align</CODE
+> attribute of the cell tag. The text in the
+column will be placed in the center. Useful if you have numbers in a column
+and the title of the column is long.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1037"
+></A
+><P
+><B
+>Example 4-21. Cell attribute example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['colattrs'] = 'align="center"';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Please note, that recommended and probably also better approach for displayed
+columns design control is to use <A
+HREF="configuration.css.html"
+><I
+>CSS classes policy</I
+></A
+>. Particulary point at <A
+HREF="configuration.basic-options.html#CONFIGURATION.FIELDS.CSS"
+><I
+>CSS customization</I
+></A
+> for
+more information how to customize selected field appearance.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.SIZE"
+></A
+>Field size</H1
+><P
+>&#13;A size of input field can be defined. Note this does affect also table
+filtering page. If you want different value for this type of page, use <A
+HREF="configuration.options-variability.html"
+><I
+>Options variability</I
+></A
+> feature.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1046"
+></A
+><P
+><B
+>Example 4-22. Input field size</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['size']   = '10';
+$opts['fdd']['col_name']['size|F'] = '5'; // only 5 for filter</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.MAXLEN"
+></A
+>Maximum field length</H1
+><P
+>&#13;Maximum length of input boxes displayed for Add / Change record mode may be
+set.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1051"
+></A
+><P
+><B
+>Example 4-23. Field sizes</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['maxlen'] = '8';
+$opts['fdd']['col_name']['maxlen'] = '24'; </PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.TEXTAREA"
+></A
+>Textarea sizes</H1
+><P
+>&#13;If the above setting does not work for you, you are probably attempting to
+change textarea size. It is also possible to specify the size of a textarea used
+to give multi-line input. Try something like:&#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1057"
+></A
+><P
+><B
+>Example 4-24. Textarea field height &amp; width</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['textarea']['rows'] = 1;
+$opts['fdd']['col_name']['textarea']['cols'] = 40;</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.TRIMLEN"
+></A
+>Character length limit</H1
+><P
+>&#13;If a table contains a number of text columns which each contain quite a bit of
+text, the table will likely scroll off the screen. This can be prevented by
+displaying only a portion of the content from a particular column. &#13;</P
+><P
+>&#13;For example, to display only the first 30 characters from a column named
+'explanation', add the following: 
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1063"
+></A
+><P
+><B
+>Example 4-25. Character length limit</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['explanation']['trimlen'] = 30; </PRE
+></DIV
+>&#13;</P
+><P
+>&#13;You may find it useful to limit the number of characters displayed for one or
+more columns. This option is approximately equivalent to the following PHP
+statement: 
+
+<PRE
+CLASS="SCREEN"
+>if (strlen($value) &#62; $trimlen) {
+	echo substr($value, 0, $trimlen - 3) . '...';
+}</PRE
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.NOWRAP"
+></A
+>Wrapping</H1
+><P
+>&#13;The 'nowrap' option is essentially equivalent to the HTML markup &lt;td nowrap&gt;.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1070"
+></A
+><P
+><B
+>Example 4-26. Wrapping</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['nowrap'] = true;
+$opts['fdd']['col_name']['nowrap'] = false;</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.MASK"
+></A
+>Print mask</H1
+><P
+>&#13;A string that is used by <CODE
+CLASS="FUNCTION"
+>sprintf()</CODE
+> to format field output. For more
+information about this function usage, please refer to its <A
+HREF="http://www.php.net/sprintf"
+TARGET="_top"
+>manual page</A
+> in PHP
+documentation.&#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1078"
+></A
+><P
+><B
+>Example 4-27. Print mask field definition</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['mask'] = '%%';     // a literal percent character
+$opts['fdd']['col_name']['mask'] = '%01.2f'; // currency or floating-point number
+$opts['fdd']['col_name']['mask'] = '%.10s';  // trim string to 10 characters</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.DATEMASK"
+></A
+>Date masks</H1
+><P
+>&#13;Date mask is string that is used to format date and/or time fields using PHP's
+function call. You can use <CODE
+CLASS="VARNAME"
+>['datemask']</CODE
+> option to format date and
+time using <A
+HREF="http://www.php.net/date"
+TARGET="_top"
+><CODE
+CLASS="FUNCTION"
+>date()</CODE
+></A
+>
+function or you can use <CODE
+CLASS="VARNAME"
+>['strftimemask']</CODE
+> option to format date and
+time using <A
+HREF="http://www.php.net/strftime"
+TARGET="_top"
+><CODE
+CLASS="FUNCTION"
+>strftime()</CODE
+></A
+>
+function. See function's manual pages for valid formatting characters. &#13;</P
+><P
+>&#13;These date and time formatting functions are applied only if selected value
+from database has non-zero length and is a valid date. This prevents empty
+strings, <CODE
+CLASS="CONSTANT"
+>NULL</CODE
+> fields and invalid dates from being
+displayed as date of 1st&nbsp;January&nbsp;1970.&#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1092"
+></A
+><P
+><B
+>Example 4-28. Date mask field definitions</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['datemask'] = 'r';</PRE
+></DIV
+>
+
+Note that currently only fields displaying is implemented. Entering date
+fields concerning to these masks will be implemented in the nearly future.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.NUMBER-FORMAT"
+></A
+>Number format</H1
+><P
+>&#13;Use this option to get a formatted version of number. It uses <A
+HREF="http://www.php.net/number_format"
+TARGET="_top"
+><CODE
+CLASS="FUNCTION"
+>number_format()</CODE
+></A
+> PHP
+function. Option accepts an array with one or three elements.&#13;</P
+><P
+>&#13;The first array member defines the number of decimals in formatted number, the
+second member specifies the character before decimals and the last array
+member means separator between every group of thousands.&#13;</P
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1101"
+></A
+><P
+><B
+>Example 4-29. Number format example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['number_format'] = array(2, '.', ',');</PRE
+></DIV
+>&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.input-restrictions.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.url-linking.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Input restrictions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>URL linking</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

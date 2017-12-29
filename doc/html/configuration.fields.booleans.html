@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Booleans</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Fields options"
+HREF="configuration.fields.html"><LINK
+REL="PREVIOUS"
+TITLE="Basic options"
+HREF="configuration.basic-options.html"><LINK
+REL="NEXT"
+TITLE="JavaScript validation"
+HREF="configuration.javascript-validation.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.basic-options.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Fields options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.javascript-validation.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.FIELDS.BOOLEANS"
+>4.3. Booleans</A
+></H1
+><P
+>&#13;All variables in following section should have only <CODE
+CLASS="CONSTANT"
+>true</CODE
+> or
+<CODE
+CLASS="CONSTANT"
+>false</CODE
+> value.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.FIELDS.SORT"
+></A
+>Sorting</H1
+><P
+>&#13;Allow users to sort the display on this column. Use <CODE
+CLASS="CONSTANT"
+>true</CODE
+>
+for enable, <CODE
+CLASS="CONSTANT"
+>false</CODE
+> for disable.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN911"
+></A
+><P
+><B
+>Example 4-9. Field sorting</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['sort'] = true;
+$opts['fdd']['col_name']['sort'] = false;</PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.FIELDS.STRIP-TAGS"
+></A
+>Stripping tags</H1
+><P
+>&#13;If you are storing HTML and/or PHP content in you database columns, you may want
+to have <CODE
+CLASS="VARNAME"
+>$opts['fdd']['col_name']['strip_tags']</CODE
+> variable
+turned on for particular fields. It will strip HTML and PHP tags from field
+content, when displaying column in table listing.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN917"
+></A
+><P
+><B
+>Example 4-10. Stripping tags</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['strip_tags'] = true; 
+$opts['fdd']['col_name']['strip_tags'] = false; </PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="CONFIGURATION.FIELDS.ESCAPE"
+></A
+>HTML escaping</H1
+><P
+>&#13;By default are all field values escaped using <A
+HREF="http://www.php.net/htmlspecialchars"
+TARGET="_top"
+><CODE
+CLASS="FUNCTION"
+>htmlspecialchars()</CODE
+></A
+>
+PHP function. However, this is not always desirable. You can turn escaping off
+by setting <CODE
+CLASS="VARNAME"
+>$opts['fdd']['col_name']['escape']</CODE
+> to
+<CODE
+CLASS="CONSTANT"
+>false</CODE
+>.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN926"
+></A
+><P
+><B
+>Example 4-11. Field escaping</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['escape'] = true;
+$opts['fdd']['col_name']['escape'] = false;</PRE
+></DIV
+>&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.basic-options.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.javascript-validation.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Basic options</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>JavaScript validation</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

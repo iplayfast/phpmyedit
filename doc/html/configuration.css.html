@@ -1,0 +1,388 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>CSS classes policy</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="General options"
+HREF="configuration.general.html"><LINK
+REL="PREVIOUS"
+TITLE="Javascript and DHTML"
+HREF="configuration.js-and-dhtml.html"><LINK
+REL="NEXT"
+TITLE="Fields options"
+HREF="configuration.fields.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.js-and-dhtml.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. General options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.CSS"
+>3.13. CSS classes policy</A
+></H1
+><P
+>&#13;CSS classes policy in phpMyEdit is one from the most complicated and complex
+features. The goal is to reach almost any possible classification of HTML
+elements with the possibility to simplify classification to lower number of
+classes. &#13;</P
+><P
+>&#13;The phpMyEdit CSS class schema is displayed here:
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN727"
+></A
+><P
+><B
+>Example 3-35. CSS class name schema</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>&#60;prefix&#62;-&#60;element&#62;-&#60;page_type&#62;-&#60;position&#62;-&#60;divider&#62;-&#60;postfix&#62;</PRE
+></DIV
+></P
+><P
+>&#13;Particular parts are described here:
+
+<P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><P
+>The <CODE
+CLASS="VARNAME"
+>prefix</CODE
+> part is straighforward. Every phpMyEdit CSS class has a user
+configurable prefix. It can be empty.</P
+></LI
+><LI
+><P
+>The <CODE
+CLASS="VARNAME"
+>element</CODE
+> represents the name or type of element.  The examples
+are <CODE
+CLASS="VARNAME"
+>form</CODE
+>, <CODE
+CLASS="VARNAME"
+>row</CODE
+>, <CODE
+CLASS="VARNAME"
+>value</CODE
+>, <CODE
+CLASS="VARNAME"
+>input</CODE
+>
+and others.</P
+></LI
+><LI
+><P
+>In order to distinguish between different types of pages there is a
+<CODE
+CLASS="VARNAME"
+>page_type</CODE
+>. The possible values for this part are
+<CODE
+CLASS="VARNAME"
+>add</CODE
+>, <CODE
+CLASS="VARNAME"
+>view</CODE
+>, <CODE
+CLASS="VARNAME"
+>change</CODE
+>, <CODE
+CLASS="VARNAME"
+>copy</CODE
+>,
+<CODE
+CLASS="VARNAME"
+>delete</CODE
+>.  This part is empty for table listing and table filtering
+pages.</P
+></LI
+><LI
+><P
+>There are also some elements, which occur on the top and on the bottom of
+page as well. For this matter there is <CODE
+CLASS="VARNAME"
+>position</CODE
+> part present with
+possible values <CODE
+CLASS="VARNAME"
+>up</CODE
+> and <CODE
+CLASS="VARNAME"
+>down</CODE
+>.</P
+></LI
+><LI
+><P
+>The <CODE
+CLASS="VARNAME"
+>divider</CODE
+> aim is to provide difference between even and odd
+table listing rows. This part, if present, is always numeric with values
+starting from <CODE
+CLASS="CONSTANT"
+>0</CODE
+>.</P
+></LI
+><LI
+><P
+>At the end of CSS class name is <CODE
+CLASS="VARNAME"
+>postfix</CODE
+>. This part is related to a
+particular field. Every field can have its own postfix. See field's <A
+HREF="configuration.basic-options.html#CONFIGURATION.FIELDS.CSS"
+><I
+>CSS customization</I
+></A
+> for
+more information.</P
+></LI
+><LI
+><P
+>The default separator between parts is dash (<CODE
+CLASS="CONSTANT"
+>-</CODE
+>) and can be
+changed if desired.</P
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;CSS class names configuration is handled via <CODE
+CLASS="VARNAME"
+>$opts['css']</CODE
+>
+associative array. Here are possible configuration options related to this
+issue.&#13;</P
+><P
+>&#13;<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$opts['css']['prefix']</CODE
+></TD
+><TD
+> &nbsp; prefix of every phpMyEdit CSS class (<CODE
+CLASS="CONSTANT"
+>pme</CODE
+> by default)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$opts['css']['page_type']</CODE
+></TD
+><TD
+> &nbsp; if page type should occur in class name (disabled by default)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$opts['css']['position']</CODE
+></TD
+><TD
+> &nbsp; if position on the page should occur in class name (disabled by default)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$opts['css']['divider']</CODE
+></TD
+><TD
+> &nbsp; how many list table rows should have their own number before
+starting counting again from <CODE
+CLASS="CONSTANT"
+>0</CODE
+> (by default <CODE
+CLASS="CONSTANT"
+>2</CODE
+>; value
+of <CODE
+CLASS="CONSTANT"
+>-1</CODE
+> means every row has its own number and value of
+<CODE
+CLASS="CONSTANT"
+>0</CODE
+> means disabled)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$opts['css']['separator']</CODE
+></TD
+><TD
+> &nbsp; separator between CSS class name parts (dash <CODE
+CLASS="CONSTANT"
+>-</CODE
+> by default)</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;For concrete names of CSS classes look into HTML source code of your generated
+page. In the following box are examples of how CSS class names may appear.
+However your CSS class names can differ according to your fields and
+configuration respectively.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN792"
+></A
+><P
+><B
+>Example 3-36. CSS class name examples</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>pme-navigation-up
+pme-row-0
+pme-cell-DateTime
+pme-cancel-view
+pme-input-change
+pme-key-ArticleID</PRE
+></DIV
+>&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.js-and-dhtml.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Javascript and DHTML</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.general.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Fields options</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

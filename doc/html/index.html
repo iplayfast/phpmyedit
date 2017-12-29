@@ -1,0 +1,894 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>phpMyEdit&nbsp;5.7.1</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="NEXT"
+TITLE="Introduction"
+HREF="introduction.html"></HEAD
+><BODY
+CLASS="BOOK"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="BOOK"
+><A
+NAME="INDEX"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>phpMyEdit&nbsp;5.7.1</A
+></H1
+><H2
+CLASS="SUBTITLE"
+>instant MySQL table editor and code generator</H2
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN9"
+></A
+>Ondrej Jombik</H3
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN12"
+></A
+>Doug Hockinson</H3
+><P
+CLASS="COPYRIGHT"
+>Copyright &copy; 2002, 2003, 2004, 2005, 2006 			<A
+HREF="http://platon.sk/"
+TARGET="_top"
+>				Platon&nbsp;Group
+			</A
+>
+		</P
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>1. <A
+HREF="introduction.html"
+>Introduction</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="introduction.html#INTRODUCTION.OVERVIEW"
+>Overview</A
+></DT
+><DT
+>1.2. <A
+HREF="introduction.features.html"
+>Features</A
+></DT
+><DT
+>1.3. <A
+HREF="introduction.requirements.html"
+>Requirements</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="installation.html"
+>Installation</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="installation.html#INSTALLATION.GETTING-STARTED"
+>Getting started</A
+></DT
+><DT
+>2.2. <A
+HREF="installation.table-selection.html"
+>Table selection</A
+></DT
+><DT
+>2.3. <A
+HREF="installation.id-selection.html"
+>ID selection</A
+></DT
+><DT
+>2.4. <A
+HREF="installation.result-script.html"
+>Result script</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="configuration.general.html"
+>General options</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="configuration.general.html#CONFIGURATION.MYSQL-OPTIONS"
+>Database connection</A
+></DT
+><DT
+>3.2. <A
+HREF="configuration.unique-key.html"
+>Unique key</A
+></DT
+><DT
+>3.3. <A
+HREF="configuration.common-options.html"
+>Common options</A
+></DT
+><DT
+>3.4. <A
+HREF="configuration.permission-options.html"
+>Permission options</A
+></DT
+><DT
+>3.5. <A
+HREF="configuration.sorting.html"
+>Sorting</A
+></DT
+><DT
+>3.6. <A
+HREF="configuration.navigation.html"
+>Navigation</A
+></DT
+><DT
+>3.7. <A
+HREF="configuration.filters.html"
+>Filters</A
+></DT
+><DT
+>3.8. <A
+HREF="configuration.triggers.html"
+>Triggers</A
+></DT
+><DT
+>3.9. <A
+HREF="configuration.logging.html"
+>Logging user actions</A
+></DT
+><DT
+>3.10. <A
+HREF="configuration.languages.html"
+>Languages</A
+></DT
+><DT
+>3.11. <A
+HREF="configuration.cgi-variables.html"
+>CGI variables</A
+></DT
+><DT
+>3.12. <A
+HREF="configuration.js-and-dhtml.html"
+>Javascript and DHTML</A
+></DT
+><DT
+>3.13. <A
+HREF="configuration.css.html"
+>CSS classes policy</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="configuration.fields.html"
+>Fields options</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="configuration.fields.html#CONFIGURATION.FIELDS-OVERVIEW"
+>Definition overview</A
+></DT
+><DT
+>4.2. <A
+HREF="configuration.basic-options.html"
+>Basic options</A
+></DT
+><DT
+>4.3. <A
+HREF="configuration.fields.booleans.html"
+>Booleans</A
+></DT
+><DT
+>4.4. <A
+HREF="configuration.javascript-validation.html"
+>JavaScript validation</A
+></DT
+><DT
+>4.5. <A
+HREF="configuration.input-restrictions.html"
+>Input restrictions</A
+></DT
+><DT
+>4.6. <A
+HREF="configuration.output-control.html"
+>Output control</A
+></DT
+><DT
+>4.7. <A
+HREF="configuration.url-linking.html"
+>URL linking</A
+></DT
+><DT
+>4.8. <A
+HREF="configuration.fields.sql.html"
+>SQL expressions</A
+></DT
+><DT
+>4.9. <A
+HREF="configuration.fields.php.html"
+>PHP expressions</A
+></DT
+><DT
+>4.10. <A
+HREF="configuration.tabs-feature.html"
+>TABs feature</A
+></DT
+><DT
+>4.11. <A
+HREF="configuration.options-variability.html"
+>Options variability</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="extensions.html"
+>Extensions</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="extensions.html#EXTENSIONS.OVERVIEW"
+>Overview</A
+></DT
+><DT
+>5.2. <A
+HREF="extensions.slide.html"
+>phpMyEdit-slide</A
+></DT
+><DT
+>5.3. <A
+HREF="extensions.report.html"
+>phpMyEdit-report</A
+></DT
+><DT
+>5.4. <A
+HREF="extensions.htmlarea.html"
+>phpMyEdit-htmlarea</A
+></DT
+><DT
+>5.5. <A
+HREF="extensions.calpopup.html"
+>phpMyEdit-calpopup</A
+></DT
+><DT
+>5.6. <A
+HREF="extensions.mce-cal.html"
+>phpMyEdit-mce-cal</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="hints-and-tips.html"
+>Hints &amp; tips</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="hints-and-tips.html#HINTS-AND-TIPS.OVERVIEW"
+>Overview</A
+></DT
+><DT
+>6.2. <A
+HREF="hints-and-tips.national-characters.html"
+>Handling national characters</A
+></DT
+><DT
+>6.3. <A
+HREF="hints-and-tips.data-removal-protection.html"
+>Data removal protection</A
+></DT
+><DT
+>6.4. <A
+HREF="hints-and-tips.integration.html"
+>Integration into other systems</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="other-information.html"
+>Other information</A
+></DT
+><DD
+><DL
+><DT
+>7.1. <A
+HREF="other-information.html#OTHER-INFORMATION.AUTHOR-AND-HOMEPAGE"
+>Authors and homepage</A
+></DT
+><DT
+>7.2. <A
+HREF="other-information.license.html"
+>License</A
+></DT
+><DD
+><DL
+><DT
+>7.2.1. <A
+HREF="other-information.license.html#OTHER-INFORMATION.LICENSE-OSS"
+>Open Source License</A
+></DT
+><DT
+>7.2.2. <A
+HREF="other-information.license.html#OTHER-INFORMATION.LICENSE-COMMERCIAL"
+>Commercial License</A
+></DT
+></DL
+></DD
+><DT
+>7.3. <A
+HREF="other-information.support-and-feedback.html"
+>Support and feedback</A
+></DT
+><DT
+>7.4. <A
+HREF="other-information.cvs-access.html"
+>CVS access</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="LOT"
+><DL
+CLASS="LOT"
+><DT
+><B
+>List of Examples</B
+></DT
+><DT
+>3-1. <A
+HREF="configuration.general.html#AEN136"
+>Database connection options</A
+></DT
+><DT
+>3-2. <A
+HREF="configuration.general.html#AEN145"
+>Supplying allocated connection</A
+></DT
+><DT
+>3-3. <A
+HREF="configuration.unique-key.html#AEN153"
+>Unique key definition</A
+></DT
+><DT
+>3-4. <A
+HREF="configuration.unique-key.html#AEN160"
+>Unique key type definition</A
+></DT
+><DT
+>3-5. <A
+HREF="configuration.common-options.html#AEN173"
+>Setting up the page name</A
+></DT
+><DT
+>3-6. <A
+HREF="configuration.common-options.html#AEN179"
+>Displayed records</A
+></DT
+><DT
+>3-7. <A
+HREF="configuration.common-options.html#AEN184"
+>Multiple selections option</A
+></DT
+><DT
+>3-8. <A
+HREF="configuration.common-options.html#AEN206"
+>Special page elements</A
+></DT
+><DT
+>3-9. <A
+HREF="configuration.common-options.html#AEN220"
+>Images URL</A
+></DT
+><DT
+>3-10. <A
+HREF="configuration.common-options.html#AEN226"
+>Turning off default execution</A
+></DT
+><DT
+>3-11. <A
+HREF="configuration.permission-options.html#AEN260"
+>Full permissions</A
+></DT
+><DT
+>3-12. <A
+HREF="configuration.permission-options.html#AEN264"
+>Full permissions without delete</A
+></DT
+><DT
+>3-13. <A
+HREF="configuration.permission-options.html#AEN268"
+>Read only permissions</A
+></DT
+><DT
+>3-14. <A
+HREF="configuration.sorting.html#AEN276"
+>Sort field option</A
+></DT
+><DT
+>3-15. <A
+HREF="configuration.sorting.html#AEN281"
+>Multiple sort fields</A
+></DT
+><DT
+>3-16. <A
+HREF="configuration.navigation.html#AEN316"
+>Navigation possibilities</A
+></DT
+><DT
+>3-17. <A
+HREF="configuration.navigation.html#AEN341"
+>Default buttons</A
+></DT
+><DT
+>3-18. <A
+HREF="configuration.navigation.html#AEN369"
+>Custom buttons</A
+></DT
+><DT
+>3-19. <A
+HREF="configuration.navigation.html#AEN372"
+>Buttons with large number of pages</A
+></DT
+><DT
+>3-20. <A
+HREF="configuration.filters.html#AEN379"
+>Filter examples</A
+></DT
+><DT
+>3-21. <A
+HREF="configuration.triggers.html#AEN431"
+>Select triggers</A
+></DT
+><DT
+>3-22. <A
+HREF="configuration.triggers.html#AEN434"
+>Insert triggers</A
+></DT
+><DT
+>3-23. <A
+HREF="configuration.triggers.html#AEN437"
+>Update triggers</A
+></DT
+><DT
+>3-24. <A
+HREF="configuration.triggers.html#AEN440"
+>Delete triggers</A
+></DT
+><DT
+>3-25. <A
+HREF="configuration.triggers.html#AEN537"
+>Chained update before triggers</A
+></DT
+><DT
+>3-26. <A
+HREF="configuration.logging.html#AEN550"
+>Logging</A
+></DT
+><DT
+>3-27. <A
+HREF="configuration.logging.html#AEN553"
+>Log table schema</A
+></DT
+><DT
+>3-28. <A
+HREF="configuration.languages.html#AEN591"
+>Languages selection</A
+></DT
+><DT
+>3-29. <A
+HREF="configuration.cgi-variables.html#AEN683"
+>CGI variables appending</A
+></DT
+><DT
+>3-30. <A
+HREF="configuration.cgi-variables.html#AEN688"
+>CGI variables overwriting</A
+></DT
+><DT
+>3-31. <A
+HREF="configuration.cgi-variables.html#AEN693"
+>Persistent CGI variables</A
+></DT
+><DT
+>3-32. <A
+HREF="configuration.cgi-variables.html#AEN704"
+>Custom prefix for operation links</A
+></DT
+><DT
+>3-33. <A
+HREF="configuration.cgi-variables.html#AEN709"
+>Custom name prefix for CGI variables</A
+></DT
+><DT
+>3-34. <A
+HREF="configuration.js-and-dhtml.html#AEN720"
+>Custom name prefix for JS and DHTML</A
+></DT
+><DT
+>3-35. <A
+HREF="configuration.css.html#AEN727"
+>CSS class name schema</A
+></DT
+><DT
+>3-36. <A
+HREF="configuration.css.html#AEN792"
+>CSS class name examples</A
+></DT
+><DT
+>4-1. <A
+HREF="configuration.fields.html#AEN805"
+>Basic field definition</A
+></DT
+><DT
+>4-2. <A
+HREF="configuration.basic-options.html#AEN827"
+>Field name examples</A
+></DT
+><DT
+>4-3. <A
+HREF="configuration.basic-options.html#AEN837"
+>Field guidance</A
+></DT
+><DT
+>4-4. <A
+HREF="configuration.basic-options.html#AEN841"
+>Field guidance hyperlink</A
+></DT
+><DT
+>4-5. <A
+HREF="configuration.basic-options.html#AEN846"
+>Filter selections</A
+></DT
+><DT
+>4-6. <A
+HREF="configuration.basic-options.html#AEN874"
+>Field display options</A
+></DT
+><DT
+>4-7. <A
+HREF="configuration.basic-options.html#AEN892"
+>Other display options</A
+></DT
+><DT
+>4-8. <A
+HREF="configuration.basic-options.html#AEN897"
+>Field CSS customization</A
+></DT
+><DT
+>4-9. <A
+HREF="configuration.fields.booleans.html#AEN911"
+>Field sorting</A
+></DT
+><DT
+>4-10. <A
+HREF="configuration.fields.booleans.html#AEN917"
+>Stripping tags</A
+></DT
+><DT
+>4-11. <A
+HREF="configuration.fields.booleans.html#AEN926"
+>Field escaping</A
+></DT
+><DT
+>4-12. <A
+HREF="configuration.javascript-validation.html#AEN936"
+>Required fields</A
+></DT
+><DT
+>4-13. <A
+HREF="configuration.javascript-validation.html#AEN942"
+>Regular expression example</A
+></DT
+><DT
+>4-14. <A
+HREF="configuration.javascript-validation.html#AEN954"
+>JavaScript hint</A
+></DT
+><DT
+>4-15. <A
+HREF="configuration.input-restrictions.html#AEN962"
+>Simple input restriction</A
+></DT
+><DT
+>4-16. <A
+HREF="configuration.input-restrictions.html#AEN971"
+>Table lookup restriction</A
+></DT
+><DT
+>4-17. <A
+HREF="configuration.input-restrictions.html#AEN976"
+>Advanced table lookup</A
+></DT
+><DT
+>4-18. <A
+HREF="configuration.input-restrictions.html#AEN980"
+>Complex table lookup example</A
+></DT
+><DT
+>4-19. <A
+HREF="configuration.input-restrictions.html#AEN993"
+>Input restriction using additional values</A
+></DT
+><DT
+>4-20. <A
+HREF="configuration.input-restrictions.html#AEN1024"
+>Table lookup with advanced joining</A
+></DT
+><DT
+>4-21. <A
+HREF="configuration.output-control.html#AEN1037"
+>Cell attribute example</A
+></DT
+><DT
+>4-22. <A
+HREF="configuration.output-control.html#AEN1046"
+>Input field size</A
+></DT
+><DT
+>4-23. <A
+HREF="configuration.output-control.html#AEN1051"
+>Field sizes</A
+></DT
+><DT
+>4-24. <A
+HREF="configuration.output-control.html#AEN1057"
+>Textarea field height &amp; width</A
+></DT
+><DT
+>4-25. <A
+HREF="configuration.output-control.html#AEN1063"
+>Character length limit</A
+></DT
+><DT
+>4-26. <A
+HREF="configuration.output-control.html#AEN1070"
+>Wrapping</A
+></DT
+><DT
+>4-27. <A
+HREF="configuration.output-control.html#AEN1078"
+>Print mask field definition</A
+></DT
+><DT
+>4-28. <A
+HREF="configuration.output-control.html#AEN1092"
+>Date mask field definitions</A
+></DT
+><DT
+>4-29. <A
+HREF="configuration.output-control.html#AEN1101"
+>Number format example</A
+></DT
+><DT
+>4-30. <A
+HREF="configuration.url-linking.html#AEN1108"
+>Simple URL examples</A
+></DT
+><DT
+>4-31. <A
+HREF="configuration.url-linking.html#AEN1136"
+>URL target example</A
+></DT
+><DT
+>4-32. <A
+HREF="configuration.url-linking.html#AEN1140"
+>URL display example</A
+></DT
+><DT
+>4-33. <A
+HREF="configuration.url-linking.html#AEN1147"
+>URL prefix and postfix</A
+></DT
+><DT
+>4-34. <A
+HREF="configuration.fields.sql.html#AEN1154"
+>Read SQL expressions</A
+></DT
+><DT
+>4-35. <A
+HREF="configuration.fields.sql.html#AEN1164"
+>Write SQL expressions</A
+></DT
+><DT
+>4-36. <A
+HREF="configuration.fields.sql.html#AEN1197"
+>Storing <CODE
+CLASS="CONSTANT"
+>NULL</CODE
+> instead of empty string</A
+></DT
+><DT
+>4-37. <A
+HREF="configuration.fields.sql.html#AEN1207"
+>Storing password's MD5 hash</A
+></DT
+><DT
+>4-38. <A
+HREF="configuration.fields.php.html#AEN1214"
+>PHP execution file</A
+></DT
+><DT
+>4-39. <A
+HREF="configuration.tabs-feature.html#AEN1228"
+>TAB definition</A
+></DT
+><DT
+>4-40. <A
+HREF="configuration.tabs-feature.html#AEN1232"
+>Default TAB definition</A
+></DT
+><DT
+>4-41. <A
+HREF="configuration.tabs-feature.html#AEN1237"
+>Display options below the first TAB</A
+></DT
+><DT
+>4-42. <A
+HREF="configuration.tabs-feature.html#AEN1245"
+>Turning TAB feature off</A
+></DT
+><DT
+>4-43. <A
+HREF="configuration.options-variability.html#AEN1254"
+>Init without options variability</A
+></DT
+><DT
+>4-44. <A
+HREF="configuration.options-variability.html#AEN1269"
+>Init with options variability</A
+></DT
+><DT
+>5-1. <A
+HREF="extensions.htmlarea.html#AEN1342"
+>htmlArea extension enabling</A
+></DT
+><DT
+>5-2. <A
+HREF="extensions.htmlarea.html#AEN1348"
+>htmlArea field enabling</A
+></DT
+><DT
+>5-3. <A
+HREF="extensions.calpopup.html#AEN1366"
+>CalPopup javascript</A
+></DT
+><DT
+>5-4. <A
+HREF="extensions.calpopup.html#AEN1371"
+>CalPopup javascript</A
+></DT
+><DT
+>5-5. <A
+HREF="extensions.calpopup.html#AEN1381"
+>CalPopup extension enabling</A
+></DT
+><DT
+>5-6. <A
+HREF="extensions.calpopup.html#AEN1387"
+>CalPopup field enabling</A
+></DT
+><DT
+>5-7. <A
+HREF="extensions.calpopup.html#AEN1394"
+>CalPopup advanced field</A
+></DT
+><DT
+>6-1. <A
+HREF="hints-and-tips.national-characters.html#AEN1424"
+>Charset defined with META tag</A
+></DT
+><DT
+>6-2. <A
+HREF="hints-and-tips.national-characters.html#AEN1427"
+>Charset defined with HTTP header</A
+></DT
+><DT
+>6-3. <A
+HREF="hints-and-tips.data-removal-protection.html#AEN1441"
+>Non-deleted records listing</A
+></DT
+><DT
+>6-4. <A
+HREF="hints-and-tips.data-removal-protection.html#AEN1445"
+>Trigger for marking records as deleted</A
+></DT
+><DT
+>6-5. <A
+HREF="hints-and-tips.integration.html#AEN1460"
+>phpMyEdit integrated into PHP-Nuke</A
+></DT
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="introduction.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Introduction</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

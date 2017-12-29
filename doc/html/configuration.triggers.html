@@ -1,0 +1,652 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Triggers</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="General options"
+HREF="configuration.general.html"><LINK
+REL="PREVIOUS"
+TITLE="Filters"
+HREF="configuration.filters.html"><LINK
+REL="NEXT"
+TITLE="Logging user actions"
+HREF="configuration.logging.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.filters.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. General options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.logging.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.TRIGGERS"
+>3.8. Triggers</A
+></H1
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="AEN396"
+></A
+>Triggers overview</H1
+><P
+>&#13;Triggers provide advanced users with the ability to write their own PHP
+scripts for such things as validating user input, and to have their code
+executed at the appropriate time. Triggers are files that are included via
+an&nbsp;<CODE
+CLASS="FUNCTION"
+>include()</CODE
+> statement and conditionally executed by
+<TT
+CLASS="FILENAME"
+>phpMyEdit.class.php</TT
+>. SQL triggers are included before or
+after insert, update, or delete of record. FORM triggers are included before
+displaying the form that will allow the corresponding operation, or after the
+user canceled this form.&#13;</P
+><P
+>&#13;<P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><SPAN
+>View form is related to the 'select' operation.</SPAN
+></LI
+><LI
+><SPAN
+>Add and Copy forms are related to the 'insert' operation</SPAN
+></LI
+><LI
+><SPAN
+>Edit form is related to the 'update' operation.</SPAN
+></LI
+><LI
+><SPAN
+>Delete form is related to the 'delete' operation.</SPAN
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;For SQL triggers, the operation sequence is this: before, main, after.  If any
+operation fails, not only should the next operation(s) not be executed, but
+the previous ones are 'rolled back' as if they never happened.  If a database
+is not able to do this, it is not 'transaction-safe'.&#13;</P
+><P
+>&#13;Triggers are risky in basic MySQL as there is no native transaction support.  It
+is not transaction-safe by default. There are transaction-safe table types in
+MySQL that can be conditionally built (see MySQL-Max), but phpMyEdit is currently
+not set up to support real transactions. What that means is that if an
+operation fails, the database may be left in an intermediate and invalid state.&#13;</P
+><P
+>&#13;The programmer must understand and accept these risks prior to using the phpMyEdit
+triggers mechanism. If the triggers are used, they execute within the namespace
+or scope of the phpMyEdit class.&#13;</P
+><P
+>&#13;Triggers must return <CODE
+CLASS="CONSTANT"
+>true</CODE
+> or <CODE
+CLASS="CONSTANT"
+>false</CODE
+>
+to indicate success or failure.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="AEN416"
+></A
+>Triggers types</H1
+><P
+>&#13;There are following types of phpMyEdit triggers:&#13;</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>&#13;'pre' triggers are usually used to check conditions before displaying
+the operation's page. For example, users may be allowed to View all records but
+can only Edit a subset of them. Another usage is to lock the record in
+order to avoid other users to start to change it at the same time.&#13;</P
+></LI
+><LI
+><P
+>&#13;'before' triggers are usually used to verify conditions prior to
+executing the main operation.
+For example, they can be of some use for input validation.&#13;</P
+></LI
+><LI
+><P
+>&#13;'after' triggers are usually used to perform follow-up operations
+after the main operation.  For example, to update secondary tables
+to enforce referential integrity or to update aggregate tables.&#13;</P
+></LI
+><LI
+><P
+>&#13;'cancel' triggers are usually used to perform follow-up operations
+after users cancel the form. For example, if a record is locked using a
+'pre' triggers, then a 'cancel' trigger can unlock it.&#13;</P
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;If 'pre' triggers fail, users are sent back to the list, except for the
+'update' case, where users are sent back to view page if the pre-update
+trigger fails.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="AEN429"
+></A
+>Trigger examples</H1
+><P
+>&#13;<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN431"
+></A
+><P
+><B
+>Example 3-21. Select triggers</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>// Before displaying the view page
+$opts['triggers']['select']['pre']    = 'categories.TSP.inc';
+// After canceling the view page
+$opts['triggers']['select']['cancel'] = 'categories.TSC.inc';</PRE
+></DIV
+>
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN434"
+></A
+><P
+><B
+>Example 3-22. Insert triggers</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>// Before displaying the add/copy page
+$opts['triggers']['insert']['pre']    = 'categories.TIP.inc';
+// After requesting save or more in the add/copy page
+$opts['triggers']['insert']['before'] = 'categories.TIB.inc';
+$opts['triggers']['insert']['after']  = 'categories.TIA.inc';
+// After canceling the add/copy page
+$opts['triggers']['insert']['cancel'] = 'categories.TIC.inc';</PRE
+></DIV
+>
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN437"
+></A
+><P
+><B
+>Example 3-23. Update triggers</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>// Before displaying the edit page
+$opts['triggers']['update']['pre']    = 'categories.TUP.inc';
+// After requesting save or apply in the edit page
+$opts['triggers']['update']['before'] = 'categories.TUB.inc';
+$opts['triggers']['update']['after']  = 'categories.TUA.inc';
+// After canceling the edit page
+$opts['triggers']['update']['cancel'] = 'categories.TUC.inc';</PRE
+></DIV
+>
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN440"
+></A
+><P
+><B
+>Example 3-24. Delete triggers</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>// Before displaying the delete page
+$opts['triggers']['delete']['pre']    = 'categories.TDP.inc';
+// After requesting delete in the delete page
+$opts['triggers']['delete']['before'] = 'categories.TDB.inc';
+$opts['triggers']['delete']['after']  = 'categories.TDA.inc';
+// After canceling the delete page
+$opts['triggers']['delete']['cancel'] = 'categories.TDC.inc';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;Please note that <CODE
+CLASS="VARNAME"
+>['select']['after']</CODE
+> and
+<CODE
+CLASS="VARNAME"
+>['select']['before']</CODE
+> triggers currently do not exist.&#13;</P
+><P
+>&#13;In the following sample are steps during a View, Edit, Apply and Cancel
+operation described. All involved triggers return <CODE
+CLASS="CONSTANT"
+>true</CODE
+>.
+
+<P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><SPAN
+>user starts from the list page</SPAN
+></LI
+><LI
+><SPAN
+>user asks to view a record</SPAN
+></LI
+><LI
+><SPAN
+><CODE
+CLASS="VARNAME"
+>['select']['pre']</CODE
+> trigger is included (if defined)</SPAN
+></LI
+><LI
+><SPAN
+>if <CODE
+CLASS="CONSTANT"
+>true</CODE
+> is returned then continue, else go back to list page</SPAN
+></LI
+><LI
+><SPAN
+>user is now in the view page</SPAN
+></LI
+><LI
+><SPAN
+>user asks to edit the record</SPAN
+></LI
+><LI
+><SPAN
+><CODE
+CLASS="VARNAME"
+>['update']['pre']</CODE
+> trigger is included (if defined)</SPAN
+></LI
+><LI
+><SPAN
+>if <CODE
+CLASS="CONSTANT"
+>true</CODE
+> is returned then continue, else go back to view page</SPAN
+></LI
+><LI
+><SPAN
+>user is now in the edit page</SPAN
+></LI
+><LI
+><SPAN
+>user makes some changes and asks to apply (save and continue)</SPAN
+></LI
+><LI
+><SPAN
+><CODE
+CLASS="VARNAME"
+>['update']['before']</CODE
+> trigger is included (if defined)</SPAN
+></LI
+><LI
+><SPAN
+>if <CODE
+CLASS="CONSTANT"
+>true</CODE
+> is returned then continue, else, back to list without updating</SPAN
+></LI
+><LI
+><SPAN
+>record is updated in the database</SPAN
+></LI
+><LI
+><SPAN
+><CODE
+CLASS="VARNAME"
+>['update']['after']</CODE
+> trigger is included (if defined)</SPAN
+></LI
+><LI
+><SPAN
+><CODE
+CLASS="VARNAME"
+>['update']['pre']</CODE
+> trigger is included (if defined)</SPAN
+></LI
+><LI
+><SPAN
+>if <CODE
+CLASS="CONSTANT"
+>true</CODE
+> is returned then continue, else go back to view page</SPAN
+></LI
+><LI
+><SPAN
+>user is now back to the edit page</SPAN
+></LI
+><LI
+><SPAN
+>user makes some other changes but asks to cancel them</SPAN
+></LI
+><LI
+><SPAN
+><CODE
+CLASS="VARNAME"
+>['update']['cancel']</CODE
+> trigger is included (if defined)</SPAN
+></LI
+><LI
+><SPAN
+>user is back to the list page</SPAN
+></LI
+></UL
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="AEN499"
+></A
+>Triggers variables</H1
+><P
+>&#13;In every trigger file you have available following usable variables. Some of
+them affect only a particular action.
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$this</CODE
+></TD
+><TD
+> &nbsp; object reference</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$this-&#62;dbh</CODE
+></TD
+><TD
+> &nbsp; initialized MySQL database handle</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$this-&#62;key</CODE
+></TD
+><TD
+> &nbsp; primary key name</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$this-&#62;key_type</CODE
+></TD
+><TD
+> &nbsp; primary key type</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$this-&#62;key_delim</CODE
+></TD
+><TD
+> &nbsp; primary key deliminator</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$this-&#62;rec</CODE
+></TD
+><TD
+> &nbsp; primary key value (update and delete only)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$newvals</CODE
+></TD
+><TD
+> &nbsp; associative array of new values (update and insert only)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$oldvals</CODE
+></TD
+><TD
+> &nbsp; associative array of old values (update and delete only)</TD
+></TR
+><TR
+><TD
+><CODE
+CLASS="VARNAME"
+>$changed</CODE
+></TD
+><TD
+> &nbsp; array of keys with changed values</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+
+There are also other variables available. For example every class property can
+be accessed using <CODE
+CLASS="VARNAME"
+>$this</CODE
+> object reference. All variables occur in
+'before' triggers as well as in 'after' triggers. 
+Only class properties occurs in 'pre' and 'cancel' triggers currently.&#13;</P
+><P
+>&#13;It is recommended to use the <CODE
+CLASS="FUNCTION"
+>$this-&#62;myQuery()</CODE
+> method in order
+to perform database queries for fetching additional data or doing inserts or
+updates to other database tables.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="AEN532"
+></A
+>Chained triggers</H1
+><P
+>&#13;You may set several triggers for the same operation. This allows to isolate
+code, to share more easily triggers between multiple calling scripts and to
+reuse code produced by another phpMyEdit users.&#13;</P
+><P
+>&#13;The order triggers are executed in is important. It is set by the keys of the
+chained triggers. As soon as one of the chained trigger fail, the overall
+return value is set to <CODE
+CLASS="CONSTANT"
+>false</CODE
+>, and following triggers are
+not executed. If none of chained triggers failed, then the return value is
+<CODE
+CLASS="CONSTANT"
+>true</CODE
+>.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN537"
+></A
+><P
+><B
+>Example 3-25. Chained update before triggers</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['triggers']['update']['before'][1] = 'lock.TUA.inc';
+$opts['triggers']['update']['before'][0] = 'check.TUB.inc';</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;In this example, when the user clicks on the <SPAN
+CLASS="GUIBUTTON"
+>Save</SPAN
+>
+button during editing a record, <TT
+CLASS="FILENAME"
+>check.TUB.inc</TT
+> will be run
+first. If it returns <CODE
+CLASS="CONSTANT"
+>true</CODE
+>, then
+<TT
+CLASS="FILENAME"
+>lock.TUB.inc</TT
+> will be run as well.  If one of these
+triggers fails, update of the database won't be performed, just like if a
+simple <CODE
+CLASS="VARNAME"
+>['update']['before']</CODE
+> trigger failed. Note that
+although the overall return value of 'cancel' triggers does not inluence
+phpMyEdit behavior, the return value of each chained trigger is important.&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.filters.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.logging.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Filters</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.general.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Logging user actions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

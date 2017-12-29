@@ -1,0 +1,464 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Input restrictions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Fields options"
+HREF="configuration.fields.html"><LINK
+REL="PREVIOUS"
+TITLE="JavaScript validation"
+HREF="configuration.javascript-validation.html"><LINK
+REL="NEXT"
+TITLE="Output control"
+HREF="configuration.output-control.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.javascript-validation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Fields options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.output-control.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.INPUT-RESTRICTIONS"
+>4.5. Input restrictions</A
+></H1
+><P
+>&#13;You can restrict user input for selected fields to selected values. There are
+several ways to do this. A variety of methods and examples appear below.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="AEN960"
+></A
+>Simple restriction</H1
+><P
+>&#13;Simple restriction means to restrict user input to the specified constants.
+Examples appear below. 
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN962"
+></A
+><P
+><B
+>Example 4-15. Simple input restriction</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['values'] = array('','No','Yes'); // default is '' (nothing) 
+$opts['fdd']['col_name']['values'] = array('','Yes','No'); // default is '' (nothing) 
+$opts['fdd']['col_name']['values'] = array('0','1');       // default is 0 
+$opts['fdd']['col_name']['values'] = array('A','B','C');   // default is A 
+$opts['fdd']['col_name']['values'] = array('No','Yes');    // default is No 
+$opts['fdd']['col_name']['values'] = array('Yes','No');    // default is Yes 
+$opts['fdd']['col_name']['values'] = range(1,99); </PRE
+></DIV
+>&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="AEN965"
+></A
+>Table lookup</H1
+><P
+>&#13;Variables <CODE
+CLASS="VARNAME"
+>$opts['fdd']['col_name']['values']['table']</CODE
+> and
+<CODE
+CLASS="VARNAME"
+>$opts['fdd']['col_name']['values']['column']</CODE
+> restricts user
+input to the values found in the specified column of another table.  The
+optional <CODE
+CLASS="VARNAME"
+>['values']['description']</CODE
+> field allows the values
+displayed to the user to be different from those in the
+<CODE
+CLASS="VARNAME"
+>['values']['column']</CODE
+> field.  This is useful for giving more
+meaning to column values.
+ 
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN971"
+></A
+><P
+><B
+>Example 4-16. Table lookup restriction</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['values']['table']       = 'extractTable'; 
+$opts['fdd']['col_name']['values']['column']      = 'extractColumn'; 
+$opts['fdd']['col_name']['values']['description'] = 'extractDescription'; // optional</PRE
+></DIV
+></P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="AEN974"
+></A
+>Column joining</H1
+><P
+>&#13;It is also possible to have multiple fields in your description. For example,
+to concatenate two description labels found in a different table:
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN976"
+></A
+><P
+><B
+>Example 4-17. Advanced table lookup</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['values']['description']['columns'][0] = 'desc_column_1'; 
+$opts['fdd']['col_name']['values']['description']['columns'][1] = 'desc_column_2'; 
+$opts['fdd']['col_name']['values']['description']['divs'][0]    = ' '; </PRE
+></DIV
+>&#13;</P
+><P
+>&#13;The 'div' component is what will be used as a divider between the columns in the
+display. You don't need to define the last 'div' field if it isn't required. So,
+for example if you have a series of people in a table, with a separate column
+for id, first name, and last name, you could use: 
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN980"
+></A
+><P
+><B
+>Example 4-18. Complex table lookup example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['values']['db']     = 'mydb'; // optional
+$opts['fdd']['col_name']['values']['table']  = 'mytable'; 
+$opts['fdd']['col_name']['values']['column'] = 'id'; 
+$opts['fdd']['col_name']['values']['description']['columns'][0] = 'name_last'; 
+$opts['fdd']['col_name']['values']['description']['divs'][0]    = ', '; 
+$opts['fdd']['col_name']['values']['description']['columns'][1] = 'name_first'; 
+$opts['fdd']['col_name']['values']['filters'] = 'id IN (1,2,3)'; // optional WHERE clause
+$opts['fdd']['col_name']['values']['orderby'] = 'last_name'; // optional ORDER BY clause </PRE
+></DIV
+>&#13;</P
+><P
+>&#13;If prefixation with some string in column description is desired, the
+<CODE
+CLASS="VARNAME"
+>$opts['fdd']['col_name']['values']['description']['divs'][-1]</CODE
+> can
+be used. It will precede
+<CODE
+CLASS="VARNAME"
+>$opts['fdd']['col_name']['values']['description']['columns'][0]</CODE
+>
+column.&#13;</P
+><P
+>&#13;Note that the above example contains additional features, such as filtering
+values using <CODE
+CLASS="VARNAME"
+>['filters']</CODE
+>, and ordering values using
+<CODE
+CLASS="VARNAME"
+>['orderby']</CODE
+>. &#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="AEN989"
+></A
+>Additional values</H1
+><P
+>&#13;Additional values to table lookup could be stored in
+<CODE
+CLASS="VARNAME"
+>['values2']</CODE
+> array. The main difference between simple
+<CODE
+CLASS="VARNAME"
+>['values']</CODE
+> usage is, that array keys will be stored into
+database and array values will be printed out in input section boxes. This is
+especially useful for MySQL enumerations when you do not want to print out
+enumeration keys, but rather some more user-friendly texts. See example:
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN993"
+></A
+><P
+><B
+>Example 4-19. Input restriction using additional values</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['values2'] = array(
+	'displayed' =&#62; 'Displayed Article',
+	'hidden'    =&#62; 'Hidden Article',
+	'disabled'  =&#62; 'Disabled Article',
+	'deleted'   =&#62; 'Deleted Article'
+);</PRE
+></DIV
+>&#13;</P
+><P
+>&#13;In the example above, keywords 'displayed', 'hidden', 'disabled' and 'deleted'
+will be stored in database, but user-friendly expressions will appear in
+select box for user. Usage of <CODE
+CLASS="VARNAME"
+>['values2']</CODE
+> can be combined with
+<CODE
+CLASS="VARNAME"
+>['values']</CODE
+> usage.&#13;</P
+><H1
+CLASS="BRIDGEHEAD"
+><A
+NAME="AEN999"
+></A
+>Advanced joining</H1
+><P
+>&#13;Sometimes you want to restrict table joining on the output. This is important
+in case where <CODE
+CLASS="VARNAME"
+>['values']['column']</CODE
+> is not unique in
+<CODE
+CLASS="VARNAME"
+>['values']['table']</CODE
+>. For this purpose, you can use
+<CODE
+CLASS="VARNAME"
+>$opts['fdd']['col_name']['values']['join']</CODE
+> option.  Using the
+<CODE
+CLASS="VARNAME"
+>['values']['filters']</CODE
+> simply will not work, because it is
+not applied at join time, but only when filling values in the drop down menu.&#13;</P
+><P
+>&#13;These variables are available in this option.
+
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$main_table</CODE
+></TD
+><TD
+> -- alias of the main table</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$main_column</CODE
+></TD
+><TD
+> -- join column in the main table</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$join_table</CODE
+></TD
+><TD
+> -- alias of the values table</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$join_column</CODE
+></TD
+><TD
+> -- join column in the values table</TD
+></TR
+><TR
+><TD
+> &nbsp; <CODE
+CLASS="VARNAME"
+>$join_description</CODE
+></TD
+><TD
+> -- description column in the values table</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>&#13;</P
+><P
+>&#13;phpMyEdit will create by default
+<CODE
+CLASS="VARNAME"
+>$main_table.$main_column&nbsp;=&nbsp;$join_table.$join_column</CODE
+>
+join, what is sufficient the most cases. However you may extend it with
+additional conditions as well.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1024"
+></A
+><P
+><B
+>Example 4-20. Table lookup with advanced joining</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name']['values']['join']
+= '$main_table.$main_column = $join_table.$join_column AND '
+. '$main_table.another_col  = $join_table.another_col'</PRE
+></DIV
+></P
+><P
+>&#13;Please note that <CODE
+CLASS="VARNAME"
+>['values']['filters']</CODE
+> is used for filtering
+items in dropdown during Add/Edit mode (with a SQL WHERE clause) while
+<CODE
+CLASS="VARNAME"
+>['values']['join']</CODE
+> is useful for having a correct LEFT JOIN
+against the main table in List/View mode.&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.javascript-validation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.output-control.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>JavaScript validation</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Output control</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>phpMyEdit-calpopup</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensions"
+HREF="extensions.html"><LINK
+REL="PREVIOUS"
+TITLE="phpMyEdit-htmlarea"
+HREF="extensions.htmlarea.html"><LINK
+REL="NEXT"
+TITLE="phpMyEdit-mce-cal"
+HREF="extensions.mce-cal.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="extensions.htmlarea.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Extensions</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="extensions.mce-cal.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="EXTENSIONS.CALPOPUP"
+>5.5. phpMyEdit-calpopup</A
+></H1
+><P
+>&#13;<DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="../images/warning.gif"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>This extension is obsolete. Use integrated <A
+HREF="extensions.mce-cal.html"
+><I
+>phpMyEdit-mce-cal</I
+></A
+> extension instead.</P
+></TD
+></TR
+></TABLE
+></DIV
+>&#13;</P
+><P
+>&#13;phpMyEdit-calpopup extension provides support for a calendar popup helper to be
+put on any text field.  This extension uses the free jsCalendar code from
+<A
+HREF="http://dynarch.com/mishoo/calendar.epl"
+TARGET="_top"
+>http://dynarch.com/mishoo/calendar.epl</A
+>
+website.&#13;</P
+><P
+>&#13;The requirement is a properly installed jsCalendar script. All browsers
+supported by jsCalendar are supported by this extension.&#13;</P
+><P
+>&#13;This extension enables the display of a popup calendar selection against
+selected fields. In order to use it, you should:
+
+<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;Load the jsCalendar scripts in the &lt;head&gt;...&lt;/head&gt; section of
+your phpMyEdit calling program, substituting the correct paths:
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1366"
+></A
+><P
+><B
+>Example 5-3. CalPopup javascript</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>&#60;script type="text/javascript" src="js/calendar.js"&#62;&#60;/script&#62;
+&#60;script type="text/javascript" src="js/lang/calendar-en.js"&#62;&#60;/script&#62;
+&#60;script type="text/javascript" src="js/calendar-setup.js"&#62;&#60;/script&#62;</PRE
+></DIV
+>&#13;</P
+></LI
+><LI
+><P
+>&#13;Choose your preferred jsCalendar CSS file (see jsCalendar documentation) and
+add the following in the &lt;head&gt;...&lt;/head&gt; section of your
+phpMyEdit calling program, substituting the correct path:
+  
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1371"
+></A
+><P
+><B
+>Example 5-4. CalPopup javascript</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>&#60;link rel="stylesheet" type="text/css" media="screen"
+        href="css/calendar-system.css"&#62;</PRE
+></DIV
+>&#13;</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="../images/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>&#13;To avoid an unwanted side effect in the CSS style produced by
+<TT
+CLASS="FILENAME"
+>phpMyEditSetup.php</TT
+>, add a 'width:auto' property into the
+'.calendar table' entry in your selected jsCalendar style sheet.&#13;</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+>&#13;Call to <TT
+CLASS="FILENAME"
+>phpMyEdit-calpopup.class.php</TT
+> instead of
+<TT
+CLASS="FILENAME"
+>phpMyEdit.class.php</TT
+>.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1381"
+></A
+><P
+><B
+>Example 5-5. CalPopup extension enabling</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>require_once 'extensions/phpMyEdit-calpopup.class.php';
+new phpMyEdit_calpopup($opts);</PRE
+></DIV
+>&#13;</P
+></LI
+><LI
+><P
+>&#13;Add <CODE
+CLASS="VARNAME"
+>calendar</CODE
+> parameter to the field definitions where you
+want a calendar popup in your phpMyEdit calling program.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1387"
+></A
+><P
+><B
+>Example 5-6. CalPopup field enabling</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name'] = array(
+ 'name'     =&#62; 'Column',
+ 'select'   =&#62; 'T',
+ 'options'  =&#62; 'ACPVD',
+ 'required' =&#62; true,
+ 'calendar' =&#62; true
+);</PRE
+></DIV
+>
+
+This is will display a button next to the field which pops up a calendar when
+clicked. If that field has a <CODE
+CLASS="VARNAME"
+>strftimemask</CODE
+> parameter set, it
+will use this for the date format.&#13;</P
+><P
+>        
+For more advanced usage, you can set the <CODE
+CLASS="VARNAME"
+>calendar</CODE
+> parameter
+to an array of valid jsCalendar <CODE
+CLASS="FUNCTION"
+>Calendar.setup</CODE
+> options
+(see jSCalendar document for details). Note that not all of these options make
+sense to use in phpMyEdit, and some of them will actively break the function.
+        
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1394"
+></A
+><P
+><B
+>Example 5-7. CalPopup advanced field</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>$opts['fdd']['col_name'] = array(
+ 'name'     =&#62; 'Column',
+ 'select'   =&#62; 'T',
+ 'options'  =&#62; 'ACPVD',
+ 'required' =&#62; true,
+ 'calendar' =&#62; array(
+   'ifFormat'    =&#62; '%Y/%m/%d', // defaults to the ['strftimemask']
+   'firstDay'    =&#62; 1,          // 0 = Sunday, 1 = Monday
+   'singleClick' =&#62; true,       // single or double click to close
+   'weekNumbers' =&#62; true,       // Show week numbers
+   'showsTime'   =&#62; false,      // Show time as well as date
+   'timeFormat'  =&#62; '24',       // 12 or 24 hour clock
+   'label'       =&#62; '...',      // button label (used by phpMyEdit)
+   'date'        =&#62; '2003-12-19 10:00' // Initial date/time for popup
+                                       // (see notes below)
+ )
+);</PRE
+></DIV
+>&#13;</P
+></LI
+></OL
+>&#13;</P
+><P
+>&#13;The popup will normally set the initial value to the current field value or to
+current date/time. <CODE
+CLASS="VARNAME"
+>date</CODE
+> option will always override this,
+even if there is a current date/time value in the field. If you want a default
+value only if the field is currently empty, use the phpMyEdit
+<CODE
+CLASS="VARNAME"
+>default</CODE
+> option.&#13;</P
+><P
+>&#13;Only the options listed above may be set by the user, any other options will
+be ignored.&#13;</P
+><P
+>&#13;This extension is contribution of Adam Hammond
+<CODE
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:ajh@phpmyedit.org"
+>ajh@phpmyedit.org</A
+>&#62;</CODE
+> from London.&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="extensions.htmlarea.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="extensions.mce-cal.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>phpMyEdit-htmlarea</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="extensions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>phpMyEdit-mce-cal</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

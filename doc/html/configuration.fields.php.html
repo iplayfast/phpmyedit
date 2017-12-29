@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>PHP expressions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Fields options"
+HREF="configuration.fields.html"><LINK
+REL="PREVIOUS"
+TITLE="SQL expressions"
+HREF="configuration.fields.sql.html"><LINK
+REL="NEXT"
+TITLE="TABs feature"
+HREF="configuration.tabs-feature.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.fields.sql.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Fields options</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.tabs-feature.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION.FIELDS.PHP"
+>4.9. PHP expressions</A
+></H1
+><P
+>&#13;PHP feature allows user to display any HTML code in place of a value. Behavior
+is the same as in triggers.&#13;</P
+><P
+>&#13;If PHP option is set, a file of that name is included (and executed). All
+variables avaliable in the core class are available in the included PHP file.
+
+<DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1214"
+></A
+><P
+><B
+>Example 4-38. PHP execution file</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>&#60;?php
+	if ($this-&#62;operation == $this-&#62;labels['Add']) {
+		return 'add mode selected';
+	} else {
+		return '&#60;img src="tt.png" alt="TT"&#62;';
+	}
+?&#62;</PRE
+></DIV
+>
+
+This option is indended for advanced usage. Together with pre and before <A
+HREF="configuration.triggers.html"
+>triggers</A
+>, it allows tweaking the
+core class without the need to hack it. To change input, use before triggers
+or <CODE
+CLASS="VARNAME"
+>['sqlw']</CODE
+> option.&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.fields.sql.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.tabs-feature.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>SQL expressions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.fields.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>TABs feature</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

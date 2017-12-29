@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Extensions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="phpMyEdit 5.7.1"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Options variability"
+HREF="configuration.options-variability.html"><LINK
+REL="NEXT"
+TITLE="phpMyEdit-slide"
+HREF="extensions.slide.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>phpMyEdit&nbsp;5.7.1: instant MySQL table editor and code generator</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.options-variability.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="extensions.slide.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="EXTENSIONS"
+></A
+>Chapter 5. Extensions</H1
+><P
+>&#13;There are often situations, when more specific functionality is needed from
+phpMyEdit. You will surely agree, that it will be really strange to hardcode all
+these particular requirements into the core phpMyEdit class. For this reason the
+extension mechanism is provided.&#13;</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="EXTENSIONS.OVERVIEW"
+>5.1. Overview</A
+></H1
+><P
+>&#13;Extensions are phpMyEdit_&lt;something&gt; classes, where &lt;something&gt; is an
+appropriate extension name. They not only extend base phpMyEdit class, but they
+also add new functionality. But they may not only add new things. It is
+possible also to disable such features, simply to get the desirable behaviour.&#13;</P
+><P
+>&#13;In addition to common phpMyEdit configuration options, extension configuration is
+usually provided by <CODE
+CLASS="VARNAME"
+>$opts['ext']</CODE
+> associative array.
+Possible keys are described on particular extension pages in this manual.
+Please refer to them to get more information.&#13;</P
+><P
+>&#13;Extensions are currently not part of phpMyEdit distribution. They are only in
+<A
+HREF="http://platon.sk/cvs/cvs.php/phpMyEdit/extensions/"
+TARGET="_top"
+>CVS
+repository</A
+>, because they are still under development and they are changing
+a lot. This manual chapter is provided for letting phpMyEdit users know, that
+something like this exists. The only way how to get extension files is to
+fetch them from CVS. All extensions need to be placed under the <TT
+CLASS="FILENAME"
+>extensions/</TT
+> subdirectory below the phpMyEdit core class
+location.&#13;</P
+><P
+>&#13;Several new extensions are planned to create or handle more or less specific
+tasks, especially those which are not appropriate for the phpMyEdit core class.
+You can feel absolutely free to improve existing extensions, suggest new
+improvements for them, or create new extensions to fit your own needs. We will
+be happy to add them to repository.&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.options-variability.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="extensions.slide.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Options variability</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>phpMyEdit-slide</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
